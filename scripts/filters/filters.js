@@ -1,4 +1,4 @@
-gaugeApp.filter('propsFilter', function() {
+mkcApp.filter('propsFilter', function() {
   return function(items, props) {
     var out = [];
 
@@ -30,14 +30,14 @@ gaugeApp.filter('propsFilter', function() {
 });
 
 
-gaugeApp.filter('toTrustedHtml', ['$sce', function($sce){
+mkcApp.filter('toTrustedHtml', ['$sce', function($sce){
     return function(text) {
         return $sce.trustAsHtml(text); 
     	
     };
 }]);
 
-gaugeApp.filter('thousandNotation', [function(){
+mkcApp.filter('thousandNotation', [function(){
 	return function(input) {
     	if(!input){
     		return "";

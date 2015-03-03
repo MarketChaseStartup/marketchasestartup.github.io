@@ -1,9 +1,9 @@
-var gaugeApp = angular.module('gaugeApp',['ngRoute','ngAnimate','ui.bootstrap','ngSanitize','ui.select','ngTagsInput','ui.sortable',
+var mkcApp = angular.module('mkcApp',['ngRoute','ngAnimate','ui.bootstrap','ngSanitize','ui.select','ngTagsInput','ui.sortable',
 'angularFileUpload','autocomplete','ui.utils','ngCleanMask','monospaced.elastic','angularjs-dropdown-multiselect','cgPrompt'/*,'ngMockE2E'*/]);
 
 
 
-gaugeApp.run(['$rootScope','$location', '$templateCache',
+mkcApp.run(['$rootScope','$location', '$templateCache',
 function($rootScope,$location, $templateCache) {
 
 

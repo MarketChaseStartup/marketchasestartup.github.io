@@ -12,6 +12,9 @@ mkcApp.config(['$routeProvider','$provide',function ($routeProvider,$provide){
             
     
     pagina('/','main.html','CtrlMain');
+    pagina('cadastro','cadastro.html','CtrlCadastro');
+    pagina('anuncios/lista','anuncio/lista.html','CtrlAnuncioLista');
+    pagina('anuncios/cadastro','anuncio/cadastro.html','CtrlAnuncioCadastro');
 
       
 }])

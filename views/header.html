@@ -1,3 +1,26 @@
-<div class="grid-100" id="header" >
+<div class="grid-100" id="header" ng-controller="CtrlHeader" >
     <h2>MarketChase</h2>
+
+
+	<nav class="classe0" >
+		<button ng-click="goToRegister()" >Cadastre-se</button>
+		<button ng-click="Modal.open()" >Login</button>
+	</nav>
+
+
+
+
 </div>
+
+
+<div ng-include="'views/login.html'" ></div>
+
+<style>
+.classe0{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	z-index: 100;
+	padding-right: 10px;
+}
+</style>

@@ -7,11 +7,11 @@ mkcApp.config(['$routeProvider','$provide',function ($routeProvider,$provide){
                 
 	}
     $routeProvider.otherwise({
-        redirectTo: '/'
+        redirectTo: ''
     });
             
     
-    pagina('/','main.html','CtrlMain');
+    pagina('','main.html','CtrlMain');
     pagina('cadastro','cadastro.html','CtrlCadastro');
     pagina('anuncios/lista','anuncio/lista.html','CtrlAnuncioLista');
     pagina('anuncios/cadastro','anuncio/cadastro.html','CtrlAnuncioCadastro');

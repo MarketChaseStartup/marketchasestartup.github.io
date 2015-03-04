@@ -1,7 +1,7 @@
-mkcApp.controller('CtrlMain',['$scope', function($scope){
+mkcApp.controller('CtrlMain',['$scope','$location','$modal', function($scope,$location,$modal){
     
-    $scope.Page = {
-        name: 'Main'
+    $scope.Content = {
+        list: [1,2,3]
     };
 
 }]);

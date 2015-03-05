@@ -1,5 +1,5 @@
 var Teste;
-mkcApp.factory('FctApi',['$http','FctLogin','$location',function($http,FctLogin,$location){
+mkcApp.factory('FctApi',['$http','$location',function($http,$location){
     var url = 'http://localhost:8080/marketchase/';
 
     var api = (function(){

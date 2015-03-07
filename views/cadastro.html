@@ -1,1 +1,166 @@
-Cadastro
+<div class="push-20 grid-60 DemoGrid" >
+    <tabset type="pills" justified="true" >
+       <tab>
+           <tab-heading>
+             <i class="fa fa-users"></i> Dados
+           </tab-heading>
+           <table id="cliCadastro1" class="cadastro">
+               <tr>
+               <td>Nome*</td> <td><input type='text' size="60" ng-model="Cliente.cliente.nome" class="form-control" /></td>
+               </tr>
+               <tr>
+               <td>Sexo*</td> <td><input type='radio' ng-model='Cliente.cliente.sexo' value='M'/>Masculino <input type='radio' ng-model='Cliente.cliente.sexo' value='F' />Feminino</td>
+               </tr>
+               <tr>
+               <td>Anivers&aacute;rio:</td> <td><input id='clienteAniversario' type='date' ng-model="Cliente.cliente.aniversario" class="form-control" /></td>
+               </tr>
+               <tr>
+               <td>Anota&ccedil;&atilde;o:</td> <td><textarea rows="6" cols="60" ng-model="Cliente.cliente.anotacao" ></textarea></td>
+               </tr>
+               <tr ng-show="Cliente.cliente.id" >
+                   <td colspan="2"><input type='checkbox' ng-model="Cliente.cliente.ativo" />Ativo</td>
+               </tr>
+           </table>
+       </tab>
+       <tab>
+           <tab-heading>
+             <i class="glyphicon glyphicon-earphone"></i> Contato
+           </tab-heading>
+           <table id="cliCadastro2" class="cadastro">
+               <th colspan='5'>Telefone</th>
+               <tr ng-repeat='tel in Cliente.cliente.contato' ng-show='tel.categoria=="Telefone"'>
+                   <td colspan='2'>{{tel.tipo.hasOwnProperty('Value') ? tel.tipo.Value : tel.tipo}}</td>
+                   <td colspan='2'>{{tel.contato}}</td>
+                   <td>
+                       <button ng-click="apagarContato($index)" class="btn btn-danger btn-xs">
+                           <i class="glyphicon glyphicon-remove"></i>
+                       </button>
+                   </td>
+               </tr>
+               <tr>
+               <tr style="height:20px;"><td colspan='5'></td></tr>
+               <td>Tipo</td>
+               <td>
+
+                  <ui-select id="selectTelefone" ng-model="telefone.tipo" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 100%;">
+                    <ui-select-match placeholder="Tipo Telefone">{{$select.selected.Value}}</ui-select-match>
+                    <ui-select-choices repeat="tipo in tipoTelefone | filter: $select.search">
+                      <div id="selectTelefoneOptions" ng-bind-html="tipo.Value | highlight: $select.search"></div>
+                    </ui-select-choices>
+                  </ui-select>
+
+               </td>
+               <td>N&uacute;mero:</td>
+               <td><input size="33" type='tel' ng-model='telefone.contato' maxlength="15" onkeydown="Utils.Mascaras.numerosTeclado();" onkeyup='this.value=Utils.Mascaras.addTel(this.value);' class="form-control" /></td>
+               <td>
+                   <button ng-click="novoContato('Telefone')" id="buttonNovoTelefone" class="btn btn-success btn-xs">
+                       <i class="glyphicon glyphicon-plus"></i>
+                   </button>
+               </td>
+               </tr>
+               <tr style="height:25px;"><td colspan='5'><hr style="border: solid 1px #ccc;"></td></tr>
+               <th colspan='5'>E-mail</th>
+               <tr ng-repeat='ema in Cliente.cliente.contato' ng-show='ema.categoria=="Email"'>
+                   <td colspan='2'>{{ema.tipo.hasOwnProperty('Value') ? ema.tipo.Value:ema.tipo}}</td>
+                   <td colspan='2'>{{ema.contato}}</td>
+                   <td>
+                       <button ng-click="apagarContato($index)" class="btn btn-danger btn-xs">
+                           <i class="glyphicon glyphicon-remove"></i>
+                       </button>
+                   </td>
+               </tr>
+               <tr>
+               <tr style="height:20px;"><td colspan='5'></td></tr>
+               <td>Tipo</td>
+               <td>
+
+                  <ui-select id="selectEmail" ng-model="email.tipo" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 100%;">
+                    <ui-select-match placeholder="Tipo Email">{{$select.selected.Value}}</ui-select-match>
+                    <ui-select-choices repeat="tipo in tipoEmail | filter: $select.search">
+                      <div id="selectEmailOptions" ng-bind-html="tipo.Value | highlight: $select.search"></div>
+                    </ui-select-choices>
+                  </ui-select>
+
+               </td>
+               <td>Endere&ccedil;o:</td>
+               <td><input size="33" type='email' ng-model="email.contato" class="form-control" /></td>
+               <td>
+                   <button ng-click="novoContato('Email')" id="buttonNovoEmail" class="btn btn-success btn-xs">
+                       <i class="glyphicon glyphicon-plus"></i>
+                   </button>
+               </td>
+               </tr>
+           </table>
+       </tab>
+       <tab>
+           <tab-heading>
+               <i class="glyphicon glyphicon-home"></i> Endere&ccedil;o
+           </tab-heading>
+           <table id="cliCadastro3" class="cadastro">
+               <tr>
+                   <td>Logradouro*</td>
+                   <td>
+
+                     <ui-select id="selectLogradouro" ng-model="Cliente.cliente.endereco.tipoLogradouro" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 100%;">
+                      <ui-select-match placeholder="Tipo Logradouro">{{$select.selected.Value}}</ui-select-match>
+                      <ui-select-choices repeat="tipo in tipoLogradouro | filter: $select.search">
+                        <div id="selectLogradouroOptions" ng-bind-html="tipo.Value | highlight: $select.search"></div>
+                      </ui-select-choices>
+                    </ui-select>
+
+                   </td>
+                   <td colspan='2'><input type='text' style="width:100%;" ng-model="Cliente.cliente.endereco.logradouro" tooltip="{{Cliente.cliente.endereco.tipoLogradouro.Value}}" tooltip-trigger="focus" tooltip-placement="right" class="form-control" /></td>
+               </tr>
+               <tr>
+                   <td>N&uacute;mero*</td>
+                   <td><input type='text' ng-model="Cliente.cliente.endereco.numero" class="form-control" /> </td>
+                   <td>Complemento</td>
+                   <td><input type='text' style="width:100%;" ng-model="Cliente.cliente.endereco.complemento" class="form-control" /></td>
+               </tr>
+               <tr>
+                   <td>Zona</td>
+                   <td><input type='radio' ng-model='Cliente.cliente.endereco.zona' value='urbana' />Urbana <input type='radio' ng-model='Cliente.cliente.endereco.zona' value='rural' />Rural</td>
+                   <td>CEP</td>
+                   <td><input type='text' ng-model="Cliente.cliente.endereco.cep" class="form-control" /></td>
+               </tr>
+               <tr>
+                   <td>Bairro*</td>
+                   <td colspan='3'><input type='text' ng-model='Cliente.cliente.endereco.bairro' class="form-control" /></td>
+               </tr>
+               <tr>
+                   <td>Estado*</td>
+                   <td>
+
+                     <ui-select id="selectEstado" ng-model="Cliente.cliente.endereco.estado" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 100%;">
+                      <ui-select-match placeholder="Estado">{{$select.selected.Value}}</ui-select-match>
+                      <ui-select-choices repeat="estado in estados | filter: $select.search">
+                        <div id="selectEstadoOptions" ng-bind-html="estado.Value | highlight: $select.search"></div>
+                      </ui-select-choices>
+                    </ui-select>
+
+                   </td>
+                   <td>Cidade*</td>
+                   <td>
+
+                    <ui-select id="selectCidade" ng-model="Cliente.cliente.endereco.cidade" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 100%;">
+                      <ui-select-match placeholder="Cidade">{{$select.selected.Value}}</ui-select-match>
+                      <ui-select-choices repeat="cidade in cidades | filter: $select.search">
+                        <div id="selectCidadeOptions" ng-bind-html="cidade.Value | highlight: $select.search"></div>
+                      </ui-select-choices>
+                    </ui-select>
+
+                   </td>
+               </tr>
+               <tr>
+                   <td>Coordenadas</td>
+                   <td><input type='text' ng-model="Cliente.cliente.endereco.coordenadas" readonly="readonly" class="form-control" /></td>
+                   <td colspan="2"><input type='button' id='clienteGerarCoordenadas' ng-click="gerarCoordenadas()" value="Gerar Coordenadas" ng-show="Cliente.cliente.id" /></td>
+               </tr>
+               <tr>
+                   <td>Refer&ecirc;ncia</td>
+                   <td colspan="3"><textarea rows="2" style="width:100%;" ng-model="Cliente.cliente.endereco.referencia" class="form-control"></textarea></td>
+               </tr>
+           </table>
+       </tab>
+   </tabset>   
+</div>

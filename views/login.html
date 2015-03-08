@@ -1,9 +1,12 @@
 <script type="text/ng-template" id="modalLogin.html">
-    <h1>Login</h1>
+	<div class="login-container" >
+	    <h1>Login</h1>
 
-    <input type="text" maxlength="50" ng-modal="Login.user" placeholder="Usuário" />
-    <input type="password" maxlength="50" ng-modal="Login.password" placeholder="Senha" />
+	    <input type="text" maxlength="50" ng-modal="Login.user" placeholder="Usuário" />
+	    <input type="password" maxlength="50" ng-modal="Login.password" placeholder="Senha" />
 
+	    <a>Esqueci a Senha</a>
 
-    <button ng-click="Login.enter()" >Entrar</button>
+	    <button ng-click="Login.enter()" >Entrar</button>
+    </div>
 </script>

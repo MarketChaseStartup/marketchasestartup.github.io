@@ -1,6 +1,25 @@
-PAGE {{Page.name}}
+<h1>Meus An&uacute;ncios</h1>
 
-<div ng-repeat="anuncio in Anuncio.list" >
-	{{anuncio.descricao}}
+<div class="anuncios-list" >
+	<div class="anuncio-container" ng-repeat="anuncio in Anuncio.list" >
+		<div class="anuncio-information" >
+			<div>Descri&ccedil;&atilde;o</div>
+			{{anuncio.descricao}}
+			<div>
+				Data <span>{{anuncio.data}}</span>
+			</div>
+			<div>
+				Vencimento <span>{{anuncio.vencimento}}</span>
+			</div>
+			<div>
+				Categoria <span>{{anuncio.categoria}}</span>
+			</div>
+		</div>
+		<div class="anuncio-media" >
 
+		</div>
+		<button><i class="fa fa-trash" ></i> Excluir</button>
+		<button><i class="fa fa-pencil"></i> Editar</button>
+	</div>
 </div>
+

@@ -21,12 +21,26 @@ body > #divCorpoConteudo {
 }
 
 /************************************
+               GENERAL
+************************************/
+button{
+    background-color: #955251;
+    color: #d1d2d4;
+    border: 0;
+}
+
+
+/************************************
                 LOGIN
 ************************************/
 
 .login-container{
     padding: 0px 10px 20px 10px;
     height: 300px
+}
+
+.login-container h1{
+    color: #721f27;
 }
 
 .login-container input{
@@ -38,10 +52,16 @@ body > #divCorpoConteudo {
 
 .login-container a{
     float: right;
-    margin-bottom: 90px;
+    margin-bottom: 70px;
+    color: #721f27;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .login-container button{
     clear: right;
     float: right;
+    height: 50px;
+    width:  113px;
+    color: #d1d2d4;
 }

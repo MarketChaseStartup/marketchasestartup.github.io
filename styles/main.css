@@ -1,19 +1,42 @@
+/*
+               721f27
+marsala:      #955251
+               cc525d
+
+
+classic blue: #1d4e89
+
+white:        #d1d2d4
+black:        #3a3a3c
+
+*/
+
 /************************************
                 HEADER
 ************************************/
 
 #header{
-        background-color: #003946;
+        background-color: #fff;
         color: #fff;
         min-height: 60px;
         position: fixed;
         top: 0;
         left: 0;
         z-index: 100;
+        border-bottom: 1px solid #955251;
+}
+
+#header button{
+    height: 40px;
+    margin-left: 20px;
+    margin-top: 10px;
+    width: 100px;
 }
 
 #logo{
-    margin-top: 7px;
+    margin-top: 10px;
+    height: 40px;
+    cursor: pointer;
 }
 
 /************************************
@@ -21,7 +44,7 @@
 ************************************/
 
 #footer{
-        background-color: #11b2e1;
+        background-color: #955251;
         color: #fff;
         min-height: 60px;
         padding: 25px;

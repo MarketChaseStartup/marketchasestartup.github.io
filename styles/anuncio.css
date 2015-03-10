@@ -1,0 +1,49 @@
+.anuncio-container{
+    clear: both;
+    margin-bottom: -1px;
+    border: 1px solid;
+    padding: 20px;
+}
+
+.anuncio-container .anuncio-information{
+    word-break: break-all;
+}
+
+.anuncio-container .anuncio-information span{
+    float: right;
+}
+
+.anuncio-container .anuncio-information div:not(:first-child){
+    margin-top: 30px;
+}
+
+.anuncio-container .anuncio-information,.anuncio-container .anuncio-media {
+    width: 40%;
+    display: inline-block;
+}
+
+.anuncio-container .anuncio-media {
+    border: 1px solid;
+    height: 213px;
+    width: 378px;
+    float: right;
+    text-align: center;
+}
+
+.anuncio-container .anuncio-media img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.anuncio-container footer{
+    margin-top: 20px;
+    clear:both;
+    float: right;
+}
+
+.anuncio-container footer button{
+    color: #fff;
+    height: 40px;
+    width: 100px;
+    margin-left: 20px;
+}

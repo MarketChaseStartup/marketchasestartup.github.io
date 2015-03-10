@@ -15,7 +15,7 @@ mkcApp.factory('FctAnuncio',['FctApi',function(FctApi){
 		},
 		list: [
 			{
-				descricao: "asdf asdf asdf",
+				descricao: "doifjasisiidjfasidfiosjafiojsadoifjasisiidjfasidjiisijsfasjfsiajiosfasdfasdfasdasjfoijfaiosjdfiosjafiojsadoifjasisiidjfasidjiisijsfasjfsiajiosfasdfasdfasdasjfoijfaiosjdfiosjafiojsadoifjasisiidjfasidjdfiosjafiojsadoifjasisiidjfasidjiisijsfasjfsiajiosf",
 				data: '2015-05-07',
 				vencimento: '2015-05-17',
 				categoria: 'Roupas',

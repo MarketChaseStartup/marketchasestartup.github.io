@@ -29,6 +29,11 @@ button{
     border: 0;
 }
 
+textarea{
+    width: 100%;
+    resize: vertical;
+}
+
 
 /************************************
                 LOGIN
@@ -61,6 +66,16 @@ button{
 .login-container button{
     clear: right;
     float: right;
+    height: 50px;
+    width:  113px;
+    color: #d1d2d4;
+}
+
+/************************************
+                MODAL
+************************************/
+
+.modal-body button, .modal-footer button{
     height: 50px;
     width:  113px;
     color: #d1d2d4;

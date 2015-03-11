@@ -1,1 +1,25 @@
-PAGE {{Page.name}}
+<h1>Meus An&uacute;ncios > Cadastro</h1>
+
+<div class="anuncio-container">
+    <div class="anuncio-information" >
+        <div>Descri&ccedil;&atilde;o</div>
+        <textarea ng-model="Anuncio.selected.obj.descricao" maxlength="255"></textarea>
+        <div>
+            Data <span><input type="date" ng-model="Anuncio.selected.obj.data"></span>
+        </div>
+        <div>
+            Vencimento <span><input type="date" ng-model="Anuncio.selected.obj.vencimento"></span>
+        </div>
+        <div>
+            Categoria <span><input type="text" ng-model="Anuncio.selected.obj.categoria"></span>
+        </div>
+    </div>
+    <div class="anuncio-media" >
+        <img src="images/picture_field.png" >
+    </div>
+    <footer>
+        <button ng-click="Anuncio.update($index)" ><i class="fa fa-trash" ></i> Salvar</button>
+        <button ng-click="Anuncio.finishUpdate()"  ><i class="fa fa-pencil"></i> Cancelar</button>
+    </footer>
+    <div class="clear" ></div>
+</div>

@@ -13,6 +13,15 @@
     float: right;
 }
 
+.anuncio-container .anuncio-information span input{
+    width: 100%;
+    height: 20px;
+}
+
+.anuncio-container .anuncio-information textarea{
+    min-height: 67px;
+}
+
 .anuncio-container .anuncio-information div:not(:first-child){
     margin-top: 30px;
 }

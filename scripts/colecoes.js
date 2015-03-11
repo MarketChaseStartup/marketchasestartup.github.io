@@ -80,7 +80,7 @@ var SystemMessages = {
 		},
 		deleting : function(text){
 			text = text ? " "+text : "";
-			return ("Are you sure you want to delete this"+ text +"?\nYou can't undo this action.")
+			return ("Deseja mesmo deletar este"+ text +"?\nVocê não pode desfazer esta ação.")
 		},
 		calculationImpact : function(item){
 			item = item ? "in the "+item : "";

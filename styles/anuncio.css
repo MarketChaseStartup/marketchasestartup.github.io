@@ -5,6 +5,14 @@
     padding: 20px;
 }
 
+#anuncio-novo{
+    height: 50px;
+    width:  113px;
+    color: #d1d2d4;
+    float: right;
+    margin-top: -50px;
+}
+
 .anuncio-container .anuncio-information{
     word-break: break-all;
 }

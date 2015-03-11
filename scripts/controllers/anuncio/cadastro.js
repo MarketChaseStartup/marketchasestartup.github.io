@@ -2,8 +2,4 @@ mkcApp.controller('CtrlAnuncioCadastro',['$scope','FctAnuncio','$location', func
 
     $scope.Anuncio = FctAnuncio;
 
-    if( $scope.Anuncio.selected.index === -1 ){
-        $scope.Anuncio.finishUpdate();
-    }
-
 }]);

@@ -18,8 +18,8 @@
         <img src="images/picture_field.png" >
     </div>
     <footer>
-        <button ng-click="Anuncio.update($index)" ><i class="fa fa-trash" ></i> Salvar</button>
-        <button ng-click="Anuncio.finishUpdate()"  ><i class="fa fa-pencil"></i> Cancelar</button>
+        <button ng-click="Anuncio.save($index)" ><i class="fa fa-floppy-o" ></i> {{(Anuncio.selected.index === -1 ? 'Cadastrar' : 'Salvar')}}</button>
+        <button ng-click="Anuncio.finishUpdate()"  ><i class="fa fa-times"></i> Cancelar</button>
     </footer>
     <div class="clear" ></div>
 </div>

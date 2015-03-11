@@ -5,7 +5,8 @@ mkcApp.factory('FctAnuncio',['FctApi','$location','prompt',function(FctApi,$loca
 
 		},
 		post: function(){
-
+			app.list.unshift(app.selected.obj);
+			app.finishUpdate();
 		},
 		update: function(){
 			app.list[app.selected.index] = app.selected.obj;
@@ -54,6 +55,13 @@ mkcApp.factory('FctAnuncio',['FctApi','$location','prompt',function(FctApi,$loca
 			app.selected.index = index;
 			app.selected.obj = angular.copy(app.list[index]);
 			$location.url('anuncios/cadastro');
+		},
+		save: function(){
+			if(app.selected.index === -1){
+				app.post();
+			}else{
+				app.update();
+			}
 		},
 		finishUpdate: function(){
 			app.selected.reset();

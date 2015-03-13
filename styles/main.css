@@ -24,6 +24,7 @@ black:        #3a3a3c
         left: 0;
         z-index: 100;
         border-bottom: 1px solid #955251;
+        text-align: center;
 }
 
 #header button{
@@ -37,6 +38,57 @@ black:        #3a3a3c
     margin-top: 10px;
     height: 40px;
     cursor: pointer;
+}
+
+#logo.logo-left{
+	position: absolute;
+	left: 10px;
+}
+
+
+#header .header-right-buttons{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	z-index: 100;
+	padding-right: 10px;
+}
+
+#header .header-menu{
+	position: absolute;
+	top: 0px;
+}
+
+#header .header-menu-left{
+	left: 10px;
+}
+
+#header .header-menu-right{
+	right: 10px;
+}
+
+#header .header-menu ul{
+	width:222px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+#header .header-menu-left ul{
+	margin-top:10px;	
+}
+
+
+#header .header-menu-right ul{
+	margin-left: -162px;
+}
+
+
+
+#header .header-menu li{
+	padding: 10px 0;
+	cursor: pointer;
+	color: black;
+	text-align: left;
 }
 
 /************************************

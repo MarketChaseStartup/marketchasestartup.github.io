@@ -1,10 +1,30 @@
 <div class="grid-100" id="header" ng-controller="CtrlHeader" >
-    <img src="images/mkc_logo.png" id="logo" height="40" onclick="location.href='#'" >
+   
+    <img ng-src="{{Logo.img()}}" id="logo" ng-class="Logo.align()" height="40" ng-click="Logo.url()" >
+
+    <nav class="dropdown header-menu header-menu-left" ng-if="!Page.isOnEntrance()" >
+		<a href id="user_icon" class="dropdown-toggle">
+			<i class="fa fa-bars fa-4x"></i>
+		</a>
+		<ul class="dropdown-menu">
+			<li onclick="location.href='#anuncios/lista'"><i class="fa fa-list"></i> Meus Anúncios</li>
+			<li onclick="location.href='#anuncios/cadastro'"><i class="fa fa-plus" ></i>  Novo Anúncio</li>
+		</ul>
+	</nav>
 
 
-	<nav class="classe0" >
+	<nav class="header-right-buttons" ng-if="Page.isOnEntrance()" >
 		<button ng-click="goToRegister()" >Cadastre-se</button>
 		<button ng-click="Modal.open()" >Login</button>
+	</nav>
+
+	<nav class="dropdown header-right-buttons header-menu header-menu-right" ng-if="!Page.isOnEntrance()" >
+		<a href id="user_icon" class="dropdown-toggle">
+				<i class="fa fa-user fa-4x"></i>
+		</a>
+		<ul class="dropdown-menu fonte_minima" >
+			<li onclick="location.href='#'"><i class="fa fa-power-off"></i> Logout</li>
+		</ul>
 	</nav>
 
 
@@ -14,13 +34,3 @@
 
 
 <div ng-include="'views/login.html'" ></div>
-
-<style>
-.classe0{
-	position: absolute;
-	top: 0px;
-	right: 0px;
-	z-index: 100;
-	padding-right: 10px;
-}
-</style>

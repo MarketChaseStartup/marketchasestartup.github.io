@@ -1,3 +1,5 @@
+<h1>Loja > Cadastro</h1>
+
 <div class="push-20 grid-60 DemoGrid" >
     <tabset type="pills" justified="true" >
        <tab>
@@ -6,92 +8,21 @@
            </tab-heading>
            <table id="cliCadastro1" class="cadastro">
                <tr>
-               <td>Nome*</td> <td><input type='text' size="60" ng-model="Cliente.cliente.nome" class="form-control" /></td>
+                    <td>Nome Fantasia*</td> <td><input type='text' size="60" ng-model="Cliente.cliente.nome" class="form-control" /></td>
                </tr>
                <tr>
-               <td>Sexo*</td> <td><input type='radio' ng-model='Cliente.cliente.sexo' value='M'/>Masculino <input type='radio' ng-model='Cliente.cliente.sexo' value='F' />Feminino</td>
+                    <td>Login</td> <td><input type='text' size="60" ng-model="Cliente.cliente.nome" class="form-control" /></td>
                </tr>
                <tr>
-               <td>Anivers&aacute;rio:</td> <td><input id='clienteAniversario' type='date' ng-model="Cliente.cliente.aniversario" class="form-control" /></td>
-               </tr>
-               <tr>
-               <td>Anota&ccedil;&atilde;o:</td> <td><textarea rows="6" cols="60" ng-model="Cliente.cliente.anotacao" ></textarea></td>
-               </tr>
-               <tr ng-show="Cliente.cliente.id" >
-                   <td colspan="2"><input type='checkbox' ng-model="Cliente.cliente.ativo" />Ativo</td>
+                    <td>Senha</td> <td><input type='text' size="60" ng-model="Cliente.cliente.nome" class="form-control" /></td>
                </tr>
            </table>
        </tab>
-       <tab>
-           <tab-heading>
-             <i class="glyphicon glyphicon-earphone"></i> Contato
-           </tab-heading>
-           <table id="cliCadastro2" class="cadastro">
-               <th colspan='5'>Telefone</th>
-               <tr ng-repeat='tel in Cliente.cliente.contato' ng-show='tel.categoria=="Telefone"'>
-                   <td colspan='2'>{{tel.tipo.hasOwnProperty('Value') ? tel.tipo.Value : tel.tipo}}</td>
-                   <td colspan='2'>{{tel.contato}}</td>
-                   <td>
-                       <button ng-click="apagarContato($index)" class="btn btn-danger btn-xs">
-                           <i class="glyphicon glyphicon-remove"></i>
-                       </button>
-                   </td>
-               </tr>
-               <tr>
-               <tr style="height:20px;"><td colspan='5'></td></tr>
-               <td>Tipo</td>
-               <td>
+    </tabset>
 
-                  <ui-select id="selectTelefone" ng-model="telefone.tipo" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 100%;">
-                    <ui-select-match placeholder="Tipo Telefone">{{$select.selected.Value}}</ui-select-match>
-                    <ui-select-choices repeat="tipo in tipoTelefone | filter: $select.search">
-                      <div id="selectTelefoneOptions" ng-bind-html="tipo.Value | highlight: $select.search"></div>
-                    </ui-select-choices>
-                  </ui-select>
+<h1>Unidades</h1>
 
-               </td>
-               <td>N&uacute;mero:</td>
-               <td><input size="33" type='tel' ng-model='telefone.contato' maxlength="15" onkeydown="Utils.Mascaras.numerosTeclado();" onkeyup='this.value=Utils.Mascaras.addTel(this.value);' class="form-control" /></td>
-               <td>
-                   <button ng-click="novoContato('Telefone')" id="buttonNovoTelefone" class="btn btn-success btn-xs">
-                       <i class="glyphicon glyphicon-plus"></i>
-                   </button>
-               </td>
-               </tr>
-               <tr style="height:25px;"><td colspan='5'><hr style="border: solid 1px #ccc;"></td></tr>
-               <th colspan='5'>E-mail</th>
-               <tr ng-repeat='ema in Cliente.cliente.contato' ng-show='ema.categoria=="Email"'>
-                   <td colspan='2'>{{ema.tipo.hasOwnProperty('Value') ? ema.tipo.Value:ema.tipo}}</td>
-                   <td colspan='2'>{{ema.contato}}</td>
-                   <td>
-                       <button ng-click="apagarContato($index)" class="btn btn-danger btn-xs">
-                           <i class="glyphicon glyphicon-remove"></i>
-                       </button>
-                   </td>
-               </tr>
-               <tr>
-               <tr style="height:20px;"><td colspan='5'></td></tr>
-               <td>Tipo</td>
-               <td>
-
-                  <ui-select id="selectEmail" ng-model="email.tipo" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 100%;">
-                    <ui-select-match placeholder="Tipo Email">{{$select.selected.Value}}</ui-select-match>
-                    <ui-select-choices repeat="tipo in tipoEmail | filter: $select.search">
-                      <div id="selectEmailOptions" ng-bind-html="tipo.Value | highlight: $select.search"></div>
-                    </ui-select-choices>
-                  </ui-select>
-
-               </td>
-               <td>Endere&ccedil;o:</td>
-               <td><input size="33" type='email' ng-model="email.contato" class="form-control" /></td>
-               <td>
-                   <button ng-click="novoContato('Email')" id="buttonNovoEmail" class="btn btn-success btn-xs">
-                       <i class="glyphicon glyphicon-plus"></i>
-                   </button>
-               </td>
-               </tr>
-           </table>
-       </tab>
+    <tabset type="pills" justified="true" class="loja-unidade" >
        <tab>
            <tab-heading>
                <i class="glyphicon glyphicon-home"></i> Endere&ccedil;o
@@ -152,15 +83,54 @@
                    </td>
                </tr>
                <tr>
-                   <td>Coordenadas</td>
-                   <td><input type='text' ng-model="Cliente.cliente.endereco.coordenadas" readonly="readonly" class="form-control" /></td>
-                   <td colspan="2"><input type='button' id='clienteGerarCoordenadas' ng-click="gerarCoordenadas()" value="Gerar Coordenadas" ng-show="Cliente.cliente.id" /></td>
-               </tr>
-               <tr>
                    <td>Refer&ecirc;ncia</td>
                    <td colspan="3"><textarea rows="2" style="width:100%;" ng-model="Cliente.cliente.endereco.referencia" class="form-control"></textarea></td>
                </tr>
            </table>
+       </tab>
+       <tab>
+           <tab-heading>
+             <i class="glyphicon glyphicon-earphone"></i> Contato
+           </tab-heading>
+
+                    <div class="loja-contato-header" >
+                                        <div class="grid-50" ><h3>Telefones</h3></div>
+                                        <div class="grid-50" ><h3>Emails</h3></div>
+                    </div>
+                    <div class="loja-contato-body" >
+                                        <div class="grid-50" >
+                                                            <div ng-repeat="tel in []" >
+                                                                                {{tel.contato}}
+                                                                                <button ng-click="apagarContato($index)" class="btn btn-danger btn-xs">
+                                                                                       <i class="glyphicon glyphicon-remove"></i>
+                                                                                   </button>
+                                                            </div>       
+                                                            <div>
+                                                                                <input size="33" type='tel' ng-model='telefone.contato' maxlength="15" onkeydown="Utils.Mascaras.numerosTeclado();" onkeyup='this.value=Utils.Mascaras.addTel(this.value);' class="form-control" />
+                                                                          
+                                                                               <button ng-click="novoContato('Telefone')" id="buttonNovoTelefone" class="btn btn-success btn-xs">
+                                                                                   <i class="glyphicon glyphicon-plus"></i>
+                                                                               </button>
+                                                            </div>
+                                        </div>
+                                        <div class="grid-50" >
+                                                            <div ng-repeat="tel in []" >
+                                                                                {{tel.contato}}
+                                                                                <button ng-click="apagarContato($index)" class="btn btn-danger btn-xs">
+                                                                                       <i class="glyphicon glyphicon-remove"></i>
+                                                                                   </button>
+                                                            </div>
+                                                            <div>
+                                                                                <input size="33" type='email' ng-model='telefone.contato'  class="form-control" />
+                                                                          
+                                                                               <button ng-click="novoContato('Telefone')" id="buttonNovoTelefone" class="btn btn-success btn-xs">
+                                                                                   <i class="glyphicon glyphicon-plus"></i>
+                                                                               </button>
+                                                            </div>
+                                        </div>
+                    </div>
+                    <div class="clear" ></div>
+
        </tab>
    </tabset>   
 </div>

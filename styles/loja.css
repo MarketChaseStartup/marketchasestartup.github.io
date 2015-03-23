@@ -1,0 +1,27 @@
+table.cadastro{
+    width: 100%;
+}
+
+table.cadastro tr{
+}
+
+table.cadastro tr td{
+    border-left: solid 10px rgba(0, 0, 0, 0);
+    border-top: solid 10px rgba(0,0,0,0);
+}
+
+table.cadastro tr td input[type=text],table.cadastro tr td input[type=tel],table.cadastro tr td input[type=email],
+table.cadastro tr td input[type=date],table.cadastro tr td select,table.cadastro tr td textarea{
+    width: 100%;
+    
+}
+
+.loja-unidade{
+    border: 1px solid;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.loja-unidade .tab-content{
+    padding-right: 10px;
+}

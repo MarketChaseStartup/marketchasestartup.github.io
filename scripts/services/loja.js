@@ -1,4 +1,4 @@
-mkcApp.factory('FctAnuncio',['FctApi','$location','prompt',function(FctApi,$location,prompt){
+mkcApp.factory('FctLoja',['FctApi','$location','prompt',function(FctApi,$location,prompt){
     
 	var app = {
 		get: function(){

@@ -29,6 +29,11 @@ button{
     border: 0;
 }
 
+button:hover{
+    background-color: #721f27;
+}
+
+
 textarea{
     width: 100%;
     resize: vertical;
@@ -79,4 +84,12 @@ textarea{
     height: 50px;
     width:  113px;
     color: #d1d2d4;
+}
+
+
+/************************************
+                NAV
+************************************/
+.nav-pills>li.active>a{
+    background-color: #721f27 !important;
 }

@@ -8,13 +8,13 @@
            </tab-heading>
            <table id="cliCadastro1" class="cadastro">
                <tr>
-                    <td>Nome Fantasia*</td> <td><input type='text' size="60" ng-model="Cliente.cliente.nome" class="form-control" /></td>
+                    <td>Nome Fantasia*</td> <td><input type='text' size="60" ng-model="Loja.selected.obj.nome" class="form-control" /></td>
                </tr>
                <tr>
-                    <td>Login</td> <td><input type='text' size="60" ng-model="Cliente.cliente.nome" class="form-control" /></td>
+                    <td>Login</td> <td><input type='text' size="60" ng-model="Loja.selected.obj.login.login" class="form-control" /></td>
                </tr>
                <tr>
-                    <td>Senha</td> <td><input type='text' size="60" ng-model="Cliente.cliente.nome" class="form-control" /></td>
+                    <td>Senha</td> <td><input type='text' size="60" ng-model="Loja.selected.obj.login.senha" class="form-control" /></td>
                </tr>
            </table>
        </tab>
@@ -22,7 +22,7 @@
 
 <h1>Unidades</h1>
 
-    <tabset type="pills" justified="true" class="loja-unidade" >
+    <tabset type="pills" justified="true" class="loja-unidade" ng-repeat="endereco in Loja.selected.obj.listaEndereco" >
        <tab>
            <tab-heading>
                <i class="glyphicon glyphicon-home"></i> Endere&ccedil;o
@@ -32,7 +32,7 @@
                    <td>Logradouro*</td>
                    <td>
 
-                     <ui-select id="selectLogradouro" ng-model="Cliente.cliente.endereco.tipoLogradouro" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 100%;">
+                     <ui-select id="selectLogradouro" ng-model="endereco.tipoLogradouro" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 100%;">
                       <ui-select-match placeholder="Tipo Logradouro">{{$select.selected.Value}}</ui-select-match>
                       <ui-select-choices repeat="tipo in tipoLogradouro | filter: $select.search">
                         <div id="selectLogradouroOptions" ng-bind-html="tipo.Value | highlight: $select.search"></div>
@@ -40,29 +40,29 @@
                     </ui-select>
 
                    </td>
-                   <td colspan='2'><input type='text' style="width:100%;" ng-model="Cliente.cliente.endereco.logradouro" tooltip="{{Cliente.cliente.endereco.tipoLogradouro.Value}}" tooltip-trigger="focus" tooltip-placement="right" class="form-control" /></td>
+                   <td colspan='2'><input type='text' style="width:100%;" ng-model="endereco.rua" class="form-control" /></td>
                </tr>
                <tr>
                    <td>N&uacute;mero*</td>
-                   <td><input type='text' ng-model="Cliente.cliente.endereco.numero" class="form-control" /> </td>
+                   <td><input type='text' ng-model="endereco.numero" class="form-control" /> </td>
                    <td>Complemento</td>
-                   <td><input type='text' style="width:100%;" ng-model="Cliente.cliente.endereco.complemento" class="form-control" /></td>
+                   <td><input type='text' style="width:100%;" ng-model="endereco.complemento" class="form-control" /></td>
                </tr>
                <tr>
                    <td>Zona</td>
-                   <td><input type='radio' ng-model='Cliente.cliente.endereco.zona' value='urbana' />Urbana <input type='radio' ng-model='Cliente.cliente.endereco.zona' value='rural' />Rural</td>
+                   <td><input type='radio' ng-model='endereco.zona' value='urbana' />Urbana <input type='radio' ng-model='endereco.zona' value='rural' />Rural</td>
                    <td>CEP</td>
-                   <td><input type='text' ng-model="Cliente.cliente.endereco.cep" class="form-control" /></td>
+                   <td><input type='text' ng-model="endereco.cep" class="form-control" /></td>
                </tr>
                <tr>
                    <td>Bairro*</td>
-                   <td colspan='3'><input type='text' ng-model='Cliente.cliente.endereco.bairro' class="form-control" /></td>
+                   <td colspan='3'><input type='text' ng-model='endereco.bairro' class="form-control" /></td>
                </tr>
                <tr>
                    <td>Estado*</td>
                    <td>
 
-                     <ui-select id="selectEstado" ng-model="Cliente.cliente.endereco.estado" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 100%;">
+                     <ui-select id="selectEstado" ng-model="endereco.estado" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 100%;">
                       <ui-select-match placeholder="Estado">{{$select.selected.Value}}</ui-select-match>
                       <ui-select-choices repeat="estado in estados | filter: $select.search">
                         <div id="selectEstadoOptions" ng-bind-html="estado.Value | highlight: $select.search"></div>
@@ -73,7 +73,7 @@
                    <td>Cidade*</td>
                    <td>
 
-                    <ui-select id="selectCidade" ng-model="Cliente.cliente.endereco.cidade" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 100%;">
+                    <ui-select id="selectCidade" ng-model="endereco.cidade" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 100%;">
                       <ui-select-match placeholder="Cidade">{{$select.selected.Value}}</ui-select-match>
                       <ui-select-choices repeat="cidade in cidades | filter: $select.search">
                         <div id="selectCidadeOptions" ng-bind-html="cidade.Value | highlight: $select.search"></div>
@@ -84,7 +84,7 @@
                </tr>
                <tr>
                    <td>Refer&ecirc;ncia</td>
-                   <td colspan="3"><textarea rows="2" style="width:100%;" ng-model="Cliente.cliente.endereco.referencia" class="form-control"></textarea></td>
+                   <td colspan="3"><textarea rows="2" style="width:100%;" ng-model="endereco.referencia" class="form-control"></textarea></td>
                </tr>
            </table>
        </tab>
@@ -99,8 +99,8 @@
                     </div>
                     <div class="loja-contato-body" >
                                         <div class="grid-50" >
-                                                            <div ng-repeat="tel in []" >
-                                                                                {{tel.contato}}
+                                                            <div ng-repeat="tel in endereco.listaContato | filter:{ 'tipoContato': 'TELEFONE' }" >
+                                                                                {{tel.descricao}}
                                                                                 <button ng-click="apagarContato($index)" class="btn btn-danger btn-xs">
                                                                                        <i class="glyphicon glyphicon-remove"></i>
                                                                                    </button>
@@ -114,8 +114,8 @@
                                                             </div>
                                         </div>
                                         <div class="grid-50" >
-                                                            <div ng-repeat="tel in []" >
-                                                                                {{tel.contato}}
+                                                            <div ng-repeat="email in endereco.listaContato | filter:{ 'tipoContato': 'EMAIL' }" >
+                                                                                {{email.descricao}}
                                                                                 <button ng-click="apagarContato($index)" class="btn btn-danger btn-xs">
                                                                                        <i class="glyphicon glyphicon-remove"></i>
                                                                                    </button>

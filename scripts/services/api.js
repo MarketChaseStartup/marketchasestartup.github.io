@@ -99,32 +99,73 @@ mkcApp.factory('FctApi',['$http','$location',function($http,$location){
     
     
     var app = {
-        composite : (function(){
+        Anuncio : (function(){
         	return {
         		get : function(id,sucesso,erro){
-        			api.get('composite/'+id,sucesso,erro);
+        			api.get('anuncio/'+id,sucesso,erro);
         		},
-        		save : function(composite,sucesso,erro){
-        			api.post('composite',{composite:composite},sucesso,erro);
+                getAll : function(sucesso,erro){
+                    api.get('anuncio',sucesso,erro);
+                },
+                findByShop: function(lojaId,sucesso,erro){
+                    api.get('anuncio/loja/' + lojaId,sucesso,erro);
+                },
+                findByCategory: function(categoriaId,sucesso,erro){
+                    api.get('anuncio/categoria/' + categoriaId,sucesso,erro);  
+                },
+        		save : function(loja,sucesso,erro){
+        			api.post('anuncio',loja,sucesso,erro);
         		},
         		del : function(id,sucesso,erro){
-        			api.del('composite/'+id,sucesso,erro);
+        			api.del('anuncio/'+id,sucesso,erro);
         		},
-        		update : function(id, updateField, sucesso, erro){
-        			api.put('composite/'+id, {updateField: updateField}, sucesso, erro, true);
+        		update : function(id, loja, sucesso, erro){
+        			api.put('anuncio/'+id, loja, sucesso, erro, true);
         		}
         	}
         })(),
-        visibilitySensitivity : (function(){
-            return{
-                getPerAccidentalDamage : function(id, sucesso, erro){
-                    api.get('visibility-sensitivity/get-per-accidental-damage/'+id, sucesso, erro);
+        Contato : (function(){
+            return {
+                save : function(contato,sucesso,erro){
+                    api.post('contatos',contato,sucesso,erro);
                 },
-                updateField : function(id, updateField, sucesso, erro){
-                    api.put('visibility-sensitivity/'+id, {updateField:updateField}, sucesso, erro, true);
+                del : function(id,sucesso,erro){
+                    api.del('contatos/'+id,sucesso,erro);
+                },
+                update : function(id, contato, sucesso, erro){
+                    api.put('contatos/'+id, contato, sucesso, erro, true);
                 }
             }
-        })()
+        })(),
+        Endereco : (function(){
+            return {
+                save : function(endereco,sucesso,erro){
+                    api.post('enderecos',endereco,sucesso,erro);
+                },
+                del : function(id,sucesso,erro){
+                    api.del('enderecos/'+id,sucesso,erro);
+                },
+                update : function(id, endereco, sucesso, erro){
+                    api.put('enderecos/'+id, endereco, sucesso, erro, true);
+                }
+            }
+        })(),
+        Loja : (function(){
+            return {
+                get : function(id,sucesso,erro){
+                    api.get('lojas/'+id,sucesso,erro);
+                },
+                save : function(loja,sucesso,erro){
+                    api.post('lojas',loja,sucesso,erro);
+                },
+                del : function(id,sucesso,erro){
+                    api.del('lojas/'+id,sucesso,erro);
+                },
+                update : function(id, loja, sucesso, erro){
+                    api.put('lojas/'+id, loja, sucesso, erro, true);
+                }
+            }
+        })(),
     };Teste = app;
     return app;
 }]);

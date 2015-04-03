@@ -1,23 +1,56 @@
 mkcApp.factory('FctAnuncio',['FctApi','$location','prompt',function(FctApi,$location,prompt){
     
 	var app = {
-		get: function(){
-
+		getAll: function(sucesso, erro){
+			FctApi.Anuncio.getAll(function(resp){
+				app.list = resp;
+				sucesso(resp);
+			}, erro);
+		},
+		getByShop: function(lojaId, sucesso, erro){
+			FctApi.Anuncio.findByShop(lojaId,
+			function(resp){
+				app.list = resp;
+				sucesso(resp);
+			}, erro);
 		},
 		post: function(){
-			app.list.unshift(app.selected.obj);
-			app.finishUpdate();
+			FctApi.Anuncio.save(app.selected.obj,
+				function(resp){
+					app.list.unshift(app.selected.obj);
+					app.finishUpdate();
+				},
+				function(err){
+					console.log(err);
+					app.finishUpdate();
+				}
+			);
 		},
 		update: function(){
-			app.list[app.selected.index] = app.selected.obj;
-			app.finishUpdate();
+			FctApi.Anuncio.update(app.selected.obj.codigo,app.selected.obj,
+				function(resp){
+					app.list.unshift(app.selected.obj);
+					app.finishUpdate();
+				},
+				function(err){
+					console.log(err);
+					app.finishUpdate();
+				}
+			);
 		},
 		del: function(index){
-			 prompt({
+			prompt({
 				"message": SystemMessages.question.deleting('anúncio'),
 				"buttons": [{ label:'Sim', primary: true, index: index }, { label:'Não', cancel: true}]
 			}).then(function(result){
-				app.list.splice(index,1);
+				FctApi.Anuncio.findByShop(app.list[index].codigo,
+					function(resp){
+						app.list.splice(index,1);
+					},
+					function(err){
+						console.log(err);
+					}
+				);
 			});
 		},
 		selected:{

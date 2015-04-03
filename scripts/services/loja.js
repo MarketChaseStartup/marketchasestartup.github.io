@@ -1,16 +1,35 @@
 mkcApp.factory('FctLoja',['FctApi','$location','prompt',function(FctApi,$location,prompt){
     
 	var app = {
-		get: function(){
-
+		getAll: function(sucesso, erro){
+			FctApi.Loja.getAll(function(resp){
+				app.list = resp.listaObjetos;
+				sucesso(resp.listaObjetos);
+			}, erro);
 		},
 		post: function(){
-			app.list.unshift(app.selected.obj);
-			app.finishUpdate();
+			FctApi.Loja.save(app.selected.obj,
+				function(resp){
+					app.list.unshift(app.selected.obj);
+					app.finishUpdate();
+				},
+				function(err){
+					console.log(err);
+					app.finishUpdate();
+				}
+			);
 		},
 		update: function(){
-			app.list[app.selected.index] = app.selected.obj;
-			app.finishUpdate();
+			FctApi.Loja.update(app.selected.obj.codigo, app.selected.obj,
+				function(resp){
+					app.list[app.selected.index] = app.selected.obj;
+					app.finishUpdate();
+				},
+				function(err){
+					console.log(err);
+					app.finishUpdate();
+				}
+			);
 		},
 		selected:{
 			index: -1,

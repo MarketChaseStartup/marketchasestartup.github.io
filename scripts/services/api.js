@@ -63,7 +63,7 @@ mkcApp.factory('FctApi',['$http','$location',function($http,$location){
         		$http({
                     method: 'PUT', 
                     url: url+endp,
-                    data: Controle.EditorTexto.jsonEscape(JSON.stringify(obj)),
+                    data: JSON.stringify(obj),
                     responseType : 'json',
                     headers: {
                         "Content-Type": "application/json"
@@ -152,8 +152,8 @@ mkcApp.factory('FctApi',['$http','$location',function($http,$location){
         })(),
         Loja : (function(){
             return {
-                get : function(id,sucesso,erro){
-                    api.get('lojas/'+id,sucesso,erro);
+                getAll : function(sucesso,erro){
+                    api.get('lojas',sucesso,erro);
                 },
                 save : function(loja,sucesso,erro){
                     api.post('lojas',loja,sucesso,erro);

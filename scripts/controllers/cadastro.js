@@ -1,5 +1,8 @@
-mkcApp.controller('CtrlCadastro',['$scope', function($scope){
+mkcApp.controller('CtrlCadastro',['$scope','FctLoja', function($scope,FctLoja){
     
+    $scope.Loja = FctLoja;
+    FctLoja.select(0);
+
     $scope.estados = Colecao.Estados;
     $scope.tipoEmail = Colecao.tiposEmail;
     $scope.tipoTelefone = Colecao.tiposTelefone;

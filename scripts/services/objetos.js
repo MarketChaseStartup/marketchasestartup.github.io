@@ -46,7 +46,7 @@ mkcApp.factory('FctObjetos',[function(){
 			this.nome = "";
 			this.login = new that.Login();
 			this.ativa = true;
-			this.listaEndereco = [];
+			this.listaEnderecos = [];
 			this.listaAnuncios = [];
 		}
 	}
@@ -71,6 +71,6 @@ mkcApp.factory('FctObjetos',[function(){
 			return new that.Loja();
 		}
 	};
-
+	Teste2 = app;
 	return app;
 }]);

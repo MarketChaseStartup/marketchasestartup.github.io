@@ -40,7 +40,7 @@ mkcApp.factory('FctLoja',['FctApi','$location','prompt',function(FctApi,$locatio
 			}
 		},
 		list: [
-			{
+			/*{
 				codigo: 1,
 				nome: "Loja de Esportivos",
 				ativa: true,
@@ -48,7 +48,7 @@ mkcApp.factory('FctLoja',['FctApi','$location','prompt',function(FctApi,$locatio
 					login: "loja1",
 					senha: ""
 				},
-				listaEndereco: [
+				listaEnderecos: [
 					{
 						codigo: 1,
 						numero: "255",
@@ -75,7 +75,7 @@ mkcApp.factory('FctLoja',['FctApi','$location','prompt',function(FctApi,$locatio
 						]
 					}
 				]
-			}
+			}*/
 		],
 		select: function(index){
 			if(app.list.length){

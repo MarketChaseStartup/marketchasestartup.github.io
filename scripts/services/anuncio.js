@@ -1,4 +1,4 @@
-mkcApp.factory('FctAnuncio',['FctApi','$location','prompt',function(FctApi,$location,prompt){
+mkcApp.factory('FctAnuncio',['FctApi','$location','prompt','FctObjetos',function(FctApi,$location,prompt, FctObjetos){
     
 	var app = {
 		getAll: function(sucesso, erro){
@@ -62,7 +62,7 @@ mkcApp.factory('FctAnuncio',['FctApi','$location','prompt',function(FctApi,$loca
 			}
 		},
 		list: [
-			{
+			/*{
 				descricao: "doifjasisiidjfasidfiosjafiojsadoifjasisiidjfasidjiisijsfasjfsiajiosfasdfasdfasdasjfoijfaiosjdfiosjafiojsadoifjasisiidjfasidjiisijsfasjfsiajiosfasdfasdfasdasjfoijfaiosjdfiosjafiojsadoifjasisiidjfasidjdfiosjafiojsadoifjasisiidjfasidjiisijsfasjfsiajiosf",
 				data: '2015-05-07',
 				vencimento: '2015-05-17',
@@ -82,7 +82,7 @@ mkcApp.factory('FctAnuncio',['FctApi','$location','prompt',function(FctApi,$loca
 				vencimento: '2015-05-17',
 				categoria: 'Roupas',
 				imagem: ''
-			}
+			}*/
 		],
 		select: function(index){
 			app.selected.index = index;

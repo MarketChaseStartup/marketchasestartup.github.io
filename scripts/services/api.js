@@ -153,7 +153,7 @@ mkcApp.factory('FctApi',['$http','$location',function($http,$location){
         Loja : (function(){
             return {
                 getAll : function(sucesso,erro){
-                    api.get('lojas',sucesso,erro);
+                    api.get('lojas/',sucesso,erro);
                 },
                 save : function(loja,sucesso,erro){
                     api.post('lojas',loja,sucesso,erro);

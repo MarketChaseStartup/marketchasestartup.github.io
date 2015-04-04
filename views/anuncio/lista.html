@@ -6,10 +6,10 @@
 			<div><b>Descri&ccedil;&atilde;o</b></div>
 			{{anuncio.descricao}}
 			<div>
-				<b>Data</b> <span>{{anuncio.dataHoraInicio}}</span>
+				<b>Data</b> <span>{{anuncio.dataHoraInicio | date : 'dd/MM/yyyy' }}</span>
 			</div>
 			<div>
-				<b>Vencimento</b> <span>{{anuncio.dataHoraVencimento}}</span>
+				<b>Vencimento</b> <span>{{anuncio.dataHoraVencimento | date : 'dd/MM/yyyy' }}</span>
 			</div>
 			<div>
 				<b>Categoria</b> <span>{{anuncio.categoria}}</span>

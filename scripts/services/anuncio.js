@@ -4,6 +4,7 @@ mkcApp.factory('FctAnuncio',['FctApi','$location','prompt','FctLoja',function(Fc
 		getAll: function(sucesso, erro){
 			FctApi.Anuncio.getAll(function(resp){
 				app.list = resp;
+				app.setDate();
 				sucesso(resp);
 			}, erro);
 		},
@@ -11,6 +12,7 @@ mkcApp.factory('FctAnuncio',['FctApi','$location','prompt','FctLoja',function(Fc
 			FctApi.Anuncio.findByShop(lojaId,
 			function(resp){
 				app.list = resp;
+				app.setDate();
 				sucesso(resp);
 			}, erro);
 		},
@@ -110,6 +112,13 @@ mkcApp.factory('FctAnuncio',['FctApi','$location','prompt','FctLoja',function(Fc
 		finishUpdate: function(){
 			app.selected.reset();
 			$location.url('anuncios/lista');
+		},
+		setDate: function(){
+			var counter = app.list.length;
+			while(counter--){
+				app.list[counter].dataHoraInicio = (new Date(app.list[counter].dataHoraInicio)).toJSON().substring(0,10);
+				app.list[counter].dataHoraVencimento = (new Date(app.list[counter].dataHoraVencimento)).toJSON().substring(0,10);
+			}
 		}
 	};
 

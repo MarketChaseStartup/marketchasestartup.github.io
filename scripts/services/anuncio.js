@@ -1,4 +1,4 @@
-mkcApp.factory('FctAnuncio',['FctApi','$location','prompt','FctObjetos',function(FctApi,$location,prompt, FctObjetos){
+mkcApp.factory('FctAnuncio',['FctApi','$location','prompt','FctLoja',function(FctApi,$location,prompt, FctLoja){
     
 	var app = {
 		getAll: function(sucesso, erro){
@@ -27,7 +27,7 @@ mkcApp.factory('FctAnuncio',['FctApi','$location','prompt','FctObjetos',function
 			);
 		},
 		update: function(){
-			FctApi.Anuncio.update(app.selected.obj.codigo,app.selected.obj,
+			FctApi.Anuncio.update(app.selected.obj.id,app.selected.obj,
 				function(resp){
 					app.list.unshift(app.selected.obj);
 					app.finishUpdate();
@@ -90,7 +90,18 @@ mkcApp.factory('FctAnuncio',['FctApi','$location','prompt','FctObjetos',function
 			$location.url('anuncios/cadastro');
 		},
 		save: function(){
+			var anuncio = app.selected.obj;
+			anuncio.loja = {codigo : FctLoja.selected.obj.codigo};
 			if(app.selected.index === -1){
+				console.warn("MOCK");
+				anuncio.ativo = true;
+				anuncio.caminhoArquivo = "sad";
+				anuncio.nomeArquivo = "fdsa";
+				anuncio.tipoAnuncio = "PNG";
+				anuncio.permanente = false;
+				anuncio.dataHoraInicio = new Date(anuncio.dataHoraInicio);
+				anuncio.dataHoraVencimento = new Date(anuncio.dataHoraVencimento);
+				anuncio.dataPostagem = new Date();
 				app.post();
 			}else{
 				app.update();

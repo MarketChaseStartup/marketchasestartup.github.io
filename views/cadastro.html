@@ -10,10 +10,10 @@
                <tr>
                     <td>Nome Fantasia*</td> <td><input type='text' size="60" ng-model="Loja.selected.obj.nome" class="form-control" /></td>
                </tr>
-               <tr>
-                    <td>Login</td> <td><input type='text' size="60" ng-model="Loja.selected.obj.login.login" class="form-control" /></td>
+               <tr ng-hide="Loja.selected.obj.codigo" >
+                    <td>Login</td> <td><input type='text' size="60" ng-model="Loja.selected.obj.login.usuario" class="form-control" /></td>
                </tr>
-               <tr>
+               <tr ng-hide="Loja.selected.obj.codigo" >
                     <td>Senha</td> <td><input type='password' size="60" ng-model="Loja.selected.obj.login.senha" class="form-control" /></td>
                </tr>
            </table>
@@ -22,7 +22,7 @@
 
 <h1>Unidades</h1>
 
-    <tabset type="pills" justified="true" class="loja-unidade" ng-repeat="endereco in Loja.selected.obj.listaEndereco" >
+    <tabset type="pills" justified="true" class="loja-unidade" ng-repeat="endereco in Loja.selected.obj.listaEnderecos" >
        <tab>
            <tab-heading>
                <i class="glyphicon glyphicon-home"></i> Endere&ccedil;o
@@ -50,7 +50,7 @@
                </tr>
                <tr>
                    <td>Zona</td>
-                   <td><input type='radio' ng-model='endereco.zona' value='urbana' />Urbana <input type='radio' ng-model='endereco.zona' value='rural' />Rural</td>
+                   <td><input type='radio' ng-model='endereco.zonaEndereco' value='URBANA' />Urbana <input type='radio' ng-model='endereco.zonaEndereco' value='RURAL' />Rural</td>
                    <td>CEP</td>
                    <td><input type='text' ng-model="endereco.cep" class="form-control" /></td>
                </tr>

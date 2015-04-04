@@ -19,7 +19,7 @@
 			<img src="images/picture_field.png" >
 		</div>
 		<footer>
-			<button ng-click="Anuncio.del($index)" ><i class="fa fa-trash" ></i> Excluir</button>
+			<button ng-click="Anuncio.del($index)" ><!--i class="fa fa-trash" ></i--> {{anuncio.ativo ? 'Desativar' : 'Ativar'}}</button>
 			<button ng-click="Anuncio.select($index)"  ><i class="fa fa-pencil"></i> Editar</button>
 		</footer>
 		<div class="clear" ></div>

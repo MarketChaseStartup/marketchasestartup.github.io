@@ -11,7 +11,18 @@
             <b>Vencimento</b> <span><input type="date" ng-model="Anuncio.selected.obj.dataHoraVencimento"></span>
         </div>
         <div>
-            <b>Categoria</b> <span><input type="text" ng-model="Anuncio.selected.obj.categoria"></span>
+            <b>Categoria</b> 
+            <span>
+
+                <ui-select id="categoria" ng-model="Anuncio.selected.obj.categoria" theme="bootstrap" ng-disabled="disabled" style="width: 100%;">
+                    <ui-select-match placeholder="Categoria">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="categoria in Categoria.list | filter: $select.search">
+                      <div ng-bind-html="categoria | highlight: $select.search"></div>
+                    </ui-select-choices>
+                  </ui-select>
+
+
+            </span>
         </div>
     </div>
     <div class="anuncio-media" >

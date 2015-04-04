@@ -13,13 +13,16 @@ mkcApp.factory('FctLoja',['FctApi','$location','prompt',function(FctApi,$locatio
 			while(i--){
 				app.selected.obj.listaEnderecos[i].cidade = app.selected.obj.listaEnderecos[i].cidade.Value;
 				app.selected.obj.listaEnderecos[i].estado = app.selected.obj.listaEnderecos[i].estado.Value;
+				app.selected.obj.listaEnderecos[i].tipoLogradouro = app.selected.obj.listaEnderecos[i].tipoLogradouro.Value;
 			}
 
 			
 			FctApi.Loja.save(app.selected.obj,
 				function(resp){
-					app.list.unshift(app.selected.obj);
-					app.finishUpdate();
+					app.list.unshift(resp.listaObjetos[0]);
+					app.select(0);
+					$location.url('loja/lista');
+					//app.finishUpdate();
 				},
 				function(err){
 					console.log(err);

@@ -19,6 +19,7 @@ mkcApp.factory('FctAnuncio',['FctApi','$location','prompt','FctLoja',function(Fc
 		post: function(){
 			FctApi.Anuncio.save(app.selected.obj,
 				function(resp){
+					app.selected.obj.codigo = resp;
 					app.list.unshift(app.selected.obj);
 					app.finishUpdate();
 				},
@@ -29,9 +30,9 @@ mkcApp.factory('FctAnuncio',['FctApi','$location','prompt','FctLoja',function(Fc
 			);
 		},
 		update: function(){
-			FctApi.Anuncio.update(app.selected.obj.id,app.selected.obj,
+			FctApi.Anuncio.update(app.selected.obj.codigo,app.selected.obj,
 				function(resp){
-					app.list.unshift(app.selected.obj);
+					app.list[app.selected.index] = app.selected.obj;
 					app.finishUpdate();
 				},
 				function(err){
@@ -41,19 +42,20 @@ mkcApp.factory('FctAnuncio',['FctApi','$location','prompt','FctLoja',function(Fc
 			);
 		},
 		del: function(index){
-			prompt({
+			/*prompt({
 				"message": SystemMessages.question.deleting('anúncio'),
 				"buttons": [{ label:'Sim', primary: true, index: index }, { label:'Não', cancel: true}]
-			}).then(function(result){
-				FctApi.Anuncio.findByShop(app.list[index].codigo,
+			}).then(function(result){*/
+				FctApi.Anuncio.del(app.list[index].codigo,
 					function(resp){
-						app.list.splice(index,1);
+						//app.list.splice(index,1);
+						app.list[index].ativo = !app.list[index].ativo;
 					},
 					function(err){
 						console.log(err);
 					}
 				);
-			});
+			//});
 		},
 		selected:{
 			index: -1,

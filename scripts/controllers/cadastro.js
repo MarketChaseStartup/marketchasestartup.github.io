@@ -1,4 +1,4 @@
-mkcApp.controller('CtrlCadastro',['$scope','FctLoja', 'FctDataSource','$timeout', function($scope,FctLoja, FctDataSource, $timeout){
+mkcApp.controller('CtrlCadastro',['$scope','FctLoja', 'FctDataSource','$timeout','FctObjetos', function($scope,FctLoja, FctDataSource, $timeout, FctObjetos){
     
     $scope.Loja = FctLoja;
     FctLoja.select(0);
@@ -40,6 +40,16 @@ mkcApp.controller('CtrlCadastro',['$scope','FctLoja', 'FctDataSource','$timeout'
         initCities();
     },1000);
     
+
+    $scope.Cadastro = {
+        novoEndereco: function(){
+            if(!$scope.Loja.selected.obj.listaEnderecos){
+                $scope.Loja.selected.obj.listaEnderecos = [];
+            }
+            $scope.Loja.selected.obj.listaEnderecos.unshift(FctObjetos.Endereco());
+        }
+    }
+
 
 }]);
 

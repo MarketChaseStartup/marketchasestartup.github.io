@@ -1,5 +1,7 @@
 <h1>Loja > Cadastro</h1>
 
+<button class="btn btn-success" style="float: right" ng-click="Loja.save()">Salvar</button>
+
 <div class="push-20 grid-60 DemoGrid" >
     <tabset type="pills" justified="true" >
        <tab>
@@ -21,6 +23,8 @@
     </tabset>
 
 <h1>Unidades</h1>
+
+<button class="btn btn-success" style="float: right" ng-click="Cadastro.novoEndereco()">Nova Unidade</button>
 
     <tabset type="pills" justified="true" class="loja-unidade" ng-repeat="endereco in Loja.selected.obj.listaEnderecos" ng-init="listaCidades[$index] = []" >
        <tab>

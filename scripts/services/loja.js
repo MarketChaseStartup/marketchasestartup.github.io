@@ -8,6 +8,14 @@ mkcApp.factory('FctLoja',['FctApi','$location','prompt',function(FctApi,$locatio
 			}, erro);
 		},
 		post: function(){
+			console.warn("MOCK");
+			var i = app.selected.obj.listaEnderecos.length;
+			while(i--){
+				app.selected.obj.listaEnderecos[i].cidade = app.selected.obj.listaEnderecos[i].cidade.Value;
+				app.selected.obj.listaEnderecos[i].estado = app.selected.obj.listaEnderecos[i].estado.Value;
+			}
+
+			
 			FctApi.Loja.save(app.selected.obj,
 				function(resp){
 					app.list.unshift(app.selected.obj);

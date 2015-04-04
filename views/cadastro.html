@@ -22,7 +22,7 @@
 
 <h1>Unidades</h1>
 
-    <tabset type="pills" justified="true" class="loja-unidade" ng-repeat="endereco in Loja.selected.obj.listaEnderecos" >
+    <tabset type="pills" justified="true" class="loja-unidade" ng-repeat="endereco in Loja.selected.obj.listaEnderecos" ng-init="listaCidades[$index] = []" >
        <tab>
            <tab-heading>
                <i class="glyphicon glyphicon-home"></i> Endere&ccedil;o
@@ -62,8 +62,8 @@
                    <td>Estado*</td>
                    <td>
 
-                     <ui-select id="selectEstado" ng-model="endereco.estado" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 100%;">
-                      <ui-select-match placeholder="Estado">{{$select.selected.Value}}</ui-select-match>
+                     <ui-select id="selectEstado" ng-model="endereco.estado" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 100%;" ng-change="retornarCidades($index)" >
+                      <ui-select-match placeholder="Estado">{{($select.selected.Value || $select.selected)}}</ui-select-match>
                       <ui-select-choices repeat="estado in estados | filter: $select.search">
                         <div id="selectEstadoOptions" ng-bind-html="estado.Value | highlight: $select.search"></div>
                       </ui-select-choices>
@@ -74,8 +74,8 @@
                    <td>
 
                     <ui-select id="selectCidade" ng-model="endereco.cidade" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 100%;">
-                      <ui-select-match placeholder="Cidade">{{$select.selected.Value}}</ui-select-match>
-                      <ui-select-choices repeat="cidade in cidades | filter: $select.search">
+                      <ui-select-match placeholder="Cidade">{{($select.selected.Value || $select.selected)}}</ui-select-match>
+                      <ui-select-choices repeat="cidade in listaCidades[$index] | filter: $select.search">
                         <div id="selectCidadeOptions" ng-bind-html="cidade.Value | highlight: $select.search"></div>
                       </ui-select-choices>
                     </ui-select>
@@ -99,7 +99,7 @@
                     </div>
                     <div class="loja-contato-body" >
                                         <div class="grid-50" >
-                                                            <div ng-repeat="tel in endereco.listaContato | filter:{ 'tipoContato': 'TELEFONE' }" >
+                                                            <div ng-repeat="tel in endereco.listaContatos | filter:{ 'tipoContato': 'TELEFONE' }" >
                                                                                 {{tel.descricao}}
                                                                                 <button ng-click="apagarContato($index)" class="btn btn-danger btn-xs">
                                                                                        <i class="glyphicon glyphicon-remove"></i>
@@ -114,7 +114,7 @@
                                                             </div>
                                         </div>
                                         <div class="grid-50" >
-                                                            <div ng-repeat="email in endereco.listaContato | filter:{ 'tipoContato': 'EMAIL' }" >
+                                                            <div ng-repeat="email in endereco.listaContatos | filter:{ 'tipoContato': 'EMAIL' }" >
                                                                                 {{email.descricao}}
                                                                                 <button ng-click="apagarContato($index)" class="btn btn-danger btn-xs">
                                                                                        <i class="glyphicon glyphicon-remove"></i>

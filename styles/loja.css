@@ -29,5 +29,5 @@ table.cadastro tr td input[type=date],table.cadastro tr td select,table.cadastro
 
 .loja-contato-body .form-control{
   display: inline;
-  max-width: 90%;
+  max-width: 85%;
 }

@@ -1,4 +1,4 @@
-mkcApp.controller('CtrlAnuncioLista',['$scope','FctAnuncio', function($scope,FctAnuncio){
+mkcApp.controller('CtrlAnuncioLista',['$scope','FctAnuncio','FctLoja', function($scope,FctAnuncio,FctLoja){
 
     $scope.Anuncio = FctAnuncio;
     

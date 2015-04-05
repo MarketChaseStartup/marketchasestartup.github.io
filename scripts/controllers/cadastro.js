@@ -47,6 +47,12 @@ mkcApp.controller('CtrlCadastro',['$scope','FctLoja', 'FctDataSource','$timeout'
                 $scope.Loja.selected.obj.listaEnderecos = [];
             }
             $scope.Loja.selected.obj.listaEnderecos.unshift(FctObjetos.Endereco());
+        },
+        novoContato: function(index, tipo){
+            var valueField = (tipo === "TELEFONE" ? $('#tel'+index) : $('#email'+index));
+            var contato = {tipoContato: tipo, descricao: valueField.val()};
+            valueField.val('');
+            FctLoja.selected.obj.listaEnderecos[index].listaContatos.unshift(contato);
         }
     }
 

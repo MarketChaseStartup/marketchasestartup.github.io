@@ -37,7 +37,7 @@
                    <td>
 
                      <ui-select id="selectLogradouro" ng-model="endereco.tipoLogradouro" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 100%;">
-                      <ui-select-match placeholder="Tipo Logradouro">{{$select.selected.Value}}</ui-select-match>
+                      <ui-select-match placeholder="Tipo Logradouro">{{($select.selected.Value || $select.selected)}}</ui-select-match>
                       <ui-select-choices repeat="tipo in tipoLogradouro | filter: $select.search">
                         <div id="selectLogradouroOptions" ng-bind-html="tipo.Value | highlight: $select.search"></div>
                       </ui-select-choices>
@@ -110,9 +110,9 @@
                                                                                    </button>
                                                             </div>       
                                                             <div>
-                                                                                <input size="33" type='tel' ng-model='telefone.contato' maxlength="15" onkeydown="Utils.Mascaras.numerosTeclado();" onkeyup='this.value=Utils.Mascaras.addTel(this.value);' class="form-control" />
+                                                                                <input size="33" type='tel' id="tel{{$index}}" maxlength="15" onkeydown="Utils.Mascaras.numerosTeclado();" onkeyup='this.value=Utils.Mascaras.addTel(this.value);' class="form-control" />
                                                                           
-                                                                               <button ng-click="novoContato('Telefone')" id="buttonNovoTelefone" class="btn btn-success btn-xs">
+                                                                               <button ng-click="Cadastro.novoContato($index,'TELEFONE')" class="btn btn-success btn-xs">
                                                                                    <i class="glyphicon glyphicon-plus"></i>
                                                                                </button>
                                                             </div>
@@ -125,9 +125,9 @@
                                                                                    </button>
                                                             </div>
                                                             <div>
-                                                                                <input size="33" type='email' ng-model='telefone.contato'  class="form-control" />
+                                                                                <input size="33" id="email{{$index}}" type='email' class="form-control" />
                                                                           
-                                                                               <button ng-click="novoContato('Telefone')" id="buttonNovoTelefone" class="btn btn-success btn-xs">
+                                                                               <button ng-click="Cadastro.novoContato($index,'EMAIL')" class="btn btn-success btn-xs">
                                                                                    <i class="glyphicon glyphicon-plus"></i>
                                                                                </button>
                                                             </div>

@@ -31,10 +31,21 @@ mkcApp.factory('FctLoja',['FctApi','$location','prompt',function(FctApi,$locatio
 			);
 		},
 		update: function(){
+			console.warn('MOCK');
+			app.selected.obj.login = {};
+			var i = app.selected.obj.listaEnderecos.length;
+			while(i--){
+				var endereco = app.selected.obj.listaEnderecos[i];
+				endereco.cidade = endereco.cidade.Value ? endereco.cidade.Value : endereco.cidade;
+				endereco.estado = endereco.estado.Value ? endereco.estado.Value : endereco.estado;
+				endereco.tipoLogradouro = endereco.tipoLogradouro.Value ? endereco.tipoLogradouro.Value : endereco.tipoLogradouro;
+			}
 			FctApi.Loja.update(app.selected.obj.codigo, app.selected.obj,
 				function(resp){
 					app.list[app.selected.index] = app.selected.obj;
-					app.finishUpdate();
+					//app.finishUpdate();
+					$location.url('anuncios/lista');
+
 				},
 				function(err){
 					console.log(err);

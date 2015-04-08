@@ -48,11 +48,17 @@ mkcApp.controller('CtrlCadastro',['$scope','FctLoja', 'FctDataSource','$timeout'
             }
             $scope.Loja.selected.obj.listaEnderecos.unshift(FctObjetos.Endereco());
         },
+        removerEndereco: function(index){
+            $scope.Loja.selected.obj.listaEnderecos.splice(index,1);
+        },
         novoContato: function(index, tipo){
             var valueField = (tipo === "TELEFONE" ? $('#tel'+index) : $('#email'+index));
             var contato = {tipoContato: tipo, descricao: valueField.val()};
             valueField.val('');
-            FctLoja.selected.obj.listaEnderecos[index].listaContatos.unshift(contato);
+            FctLoja.selected.obj.listaEnderecos[index].listaContatos.push(contato);
+        },
+        removerContato: function(endereco, contatoIndex){
+            endereco.listaContatos.splice(contatoIndex,1);
         }
     }
 

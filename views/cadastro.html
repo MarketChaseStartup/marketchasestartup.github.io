@@ -1,8 +1,11 @@
 <h1>Loja > Cadastro</h1>
 
-<button class="btn btn-success" style="float: right" ng-click="Loja.save()">Salvar</button>
-
 <div class="push-20 grid-60 DemoGrid" >
+
+<button class="btn btn-success btn-lg" style="float: right" ng-click="Loja.save()">Salvar</button>
+
+<div style="clear:both; margin-bottom: 20px;"></div>
+
     <tabset type="pills" justified="true" >
        <tab>
            <tab-heading>
@@ -24,9 +27,14 @@
 
 <h1>Unidades</h1>
 
-<button class="btn btn-success" style="float: right" ng-click="Cadastro.novoEndereco()">Nova Unidade</button>
+<button class="btn btn-success btn-md" style="float: right" ng-click="Cadastro.novoEndereco()"><i class="fa fa-plus"></i> Nova Unidade</button>
+
+<div style="clear:both; margin-bottom: 20px;"></div>
 
     <tabset type="pills" justified="true" class="loja-unidade" ng-repeat="endereco in Loja.selected.obj.listaEnderecos" ng-init="listaCidades[$index] = []" >
+
+<button class="btn btn-error btn-md" style="position: absolute;right: 11px;color: white;background: #cc525d;z-index: 2;" ng-click="Cadastro.removerEndereco($index)"><i class="glyphicon glyphicon-remove"></i></button>
+
        <tab>
            <tab-heading>
                <i class="glyphicon glyphicon-home"></i> Endere&ccedil;o
@@ -103,9 +111,9 @@
                     </div>
                     <div class="loja-contato-body" >
                                         <div class="grid-50" >
-                                                            <div ng-repeat="tel in endereco.listaContatos | filter:{ 'tipoContato': 'TELEFONE' }" >
+                                                            <div ng-repeat="tel in endereco.listaContatos" ng-if="tel.tipoContato=='TELEFONE'" >
                                                                                 {{tel.descricao}}
-                                                                                <button ng-click="apagarContato($index)" class="btn btn-danger btn-xs">
+                                                                                <button ng-click="Cadastro.removerContato(endereco,$index)" class="btn btn-danger btn-xs">
                                                                                        <i class="glyphicon glyphicon-remove"></i>
                                                                                    </button>
                                                             </div>       
@@ -118,9 +126,9 @@
                                                             </div>
                                         </div>
                                         <div class="grid-50" >
-                                                            <div ng-repeat="email in endereco.listaContatos | filter:{ 'tipoContato': 'EMAIL' }" >
+                                                            <div ng-repeat="email in endereco.listaContatos" ng-if="email.tipoContato=='EMAIL'" >
                                                                                 {{email.descricao}}
-                                                                                <button ng-click="apagarContato($index)" class="btn btn-danger btn-xs">
+                                                                                <button ng-click="Cadastro.removerContato(endereco,$index)" class="btn btn-danger btn-xs">
                                                                                        <i class="glyphicon glyphicon-remove"></i>
                                                                                    </button>
                                                             </div>

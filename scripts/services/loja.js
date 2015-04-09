@@ -21,7 +21,7 @@ mkcApp.factory('FctLoja',['FctApi','$location','prompt',function(FctApi,$locatio
 				function(resp){
 					app.list.unshift(resp.listaObjetos[0]);
 					app.select(0);
-					$location.url('loja/lista');
+					$location.url('anuncios/lista');
 					//app.finishUpdate();
 				},
 				function(err){

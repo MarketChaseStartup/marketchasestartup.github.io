@@ -99,7 +99,7 @@ mkcApp.factory('FctAnuncio',['FctApi','$location','prompt','FctLoja',function(Fc
 			if(app.selected.index === -1){
 				console.warn("MOCK");
 				anuncio.ativo = true;
-				anuncio.caminhoArquivo = "sad";
+				anuncio.caminhoArquivo = anuncio.caminhoArquivo || "sad";
 				anuncio.nomeArquivo = "fdsa";
 				anuncio.tipoAnuncio = "PNG";
 				anuncio.permanente = false;

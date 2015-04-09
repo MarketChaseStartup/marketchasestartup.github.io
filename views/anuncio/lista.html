@@ -16,7 +16,7 @@
 			</div>
 		</div>
 		<div class="anuncio-media" >
-			<img src="images/picture_field.png" >
+			<img src="" ng-src="{{anuncio.caminhoArquivo || 'images/picture_field.png'}}" >
 		</div>
 		<footer>
 			<button ng-click="Anuncio.del($index)" ><!--i class="fa fa-trash" ></i--> {{anuncio.ativo ? 'Desativar' : 'Ativar'}}</button>

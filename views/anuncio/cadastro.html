@@ -26,7 +26,9 @@
         </div>
     </div>
     <div class="anuncio-media" >
-        <img src="images/picture_field.png" >
+        <label for="anuncioArquivo" class="alterar-imagem" ><div><span>Alterar Imagem<span></div></label>
+        <input type="file" ng-file-select="Editor.abrir($files[0]);" accept="image/*" onclick="this.value=null;"  id="anuncioArquivo" />
+        <img src="" ng-src="{{Editor.exibirImagem()}}" >
     </div>
     <footer>
         <button ng-click="Anuncio.save($index)" ><i class="fa fa-floppy-o" ></i> {{(Anuncio.selected.index === -1 ? 'Cadastrar' : 'Salvar')}}</button>

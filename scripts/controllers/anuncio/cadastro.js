@@ -10,25 +10,42 @@ mkcApp.controller('CtrlAnuncioCadastro',['$scope','FctAnuncio','$location', func
         abrir: function(arquivos){
             var FR= new FileReader();
             FR.onload = function(e) {
+                 var file = e.target.result;
+                 if(file.indexOf('data:image')===-1){
+                     Plugins.Mensagem.erro('Formato Inválido');
+                     return false;
+                 }
                  $scope.Editor.imagem = e.target.result;
-                 $('.anuncio-media img').attr('src',$scope.Editor.imagem);
                  $scope.Editor.editarImagem();
             };       
             FR.readAsDataURL( arquivos );
         },
+        fechar: function(){
+            $('.image-editor').hide(500);
+            $('.resize-image').remove();
+            $('.resize-container').remove();
+            
+        },
         cortarImagem: function(){
-
+            $scope.Editor.imagem = crop();
+            $scope.Editor.fechar();
+            $scope.Editor.salvarImagem();
         },
         salvarImagem: function(){
             FctAnuncio.selected.obj.caminhoArquivo = $scope.Editor.imagem;
+            $('.anuncio-media img').attr('src',$scope.Editor.imagem);
         },
         editarImagem: function(){
-            console.warn('mock');
-            $scope.Editor.salvarImagem();
+            var element = '<img class="resize-image" src="images/picture_field.png" alt="image for resizing">';
+            $('.component').append(element);
+            $('.resize-image').attr('src',$scope.Editor.imagem);
+            resizeableImage($('.resize-image'));
+            
+            $('.image-editor').show(500);
         },
         imagem: "",
         exibirImagem: function(){
-             return $scope.Editor.imagem || FctAnuncio.selected.obj.caminhoArquivo || 'images/picture_field.png'
+             return FctAnuncio.selected.obj.caminhoArquivo || 'images/picture_field.png'
         }
     }
 

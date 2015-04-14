@@ -109,8 +109,34 @@ mkcApp.factory('FctLoja',['FctApi','$location','prompt',function(FctApi,$locatio
 				app.selected.obj = {"login": {}, "ativa": true, "listaEndereco": []};
 				$location.url('cadastro');
 			}
+			app.setupObject();
+		},
+		setupObject: function(){
+			FctObjReader.Objects.totalRead = [];
+			FctObjReader.Objects.ignoreRead = [];
+			FctObjReader.Objects.includeRead = [];
+			var obj = app.sellected.obj;
+			var fields = ['description','intervalJustification','note','number','procedureDescription','remarks','title'];
+	                var includeRead = [];
+	                /*for (var i = 0; i < tasks.length; i++) {
+	                    includeRead = includeRead.concat([
+	                        [tasks[i],fields],
+	                        [tasks[i].zonalCandidate,['justification']]
+	                    ]);
+	                    if(tasks[i].taskDefinitionType === "AD"){
+	                        includeRead.push([tasks[i].coveredByEdCpcp,['justification']]);
+	                    }
+	                    if(! tasks[i].alternativeTask){
+	                        tasks[i].alternativeTask = {name:"",type:"ALTERNATIVE"};
+	                    }
+	                    if(! tasks[i].taskConsolidation){
+	                        tasks[i].taskConsolidation = {name:"",type:"CONSOLIDATION"};
+	                    }
+	                }*/
+	                FctObjReader.Objects.includeRead = includeRead;
 		},
 		save: function(){
+			//FormProgress.calc()
 			if(app.selected.index === -1){
 				app.post();
 			}else{

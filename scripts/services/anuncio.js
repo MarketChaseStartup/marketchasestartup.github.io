@@ -1,4 +1,4 @@
-mkcApp.factory('FctAnuncio',['FctApi','$location','prompt','FctLoja',function(FctApi,$location,prompt, FctLoja){
+mkcApp.factory('FctAnuncio',['FctApi','$location','prompt','FctLoja','FctObjectReader',function(FctApi,$location,prompt, FctLoja,FctObjectReader){
     
 	var app = {
 		getAll: function(sucesso, erro){
@@ -91,9 +91,35 @@ mkcApp.factory('FctAnuncio',['FctApi','$location','prompt','FctLoja',function(Fc
 		select: function(index){
 			app.selected.index = index;
 			app.selected.obj = angular.copy(app.list[index]);
+			app.setupObject();
 			$location.url('anuncios/cadastro');
 		},
+		setupObject: function(){
+			FctObjReader.Objects.totalRead = [];
+			FctObjReader.Objects.ignoreRead = [];
+			FctObjReader.Objects.includeRead = [];
+			var obj = app.sellected.obj;
+			var fields = ['description','intervalJustification','note','number','procedureDescription','remarks','title'];
+	                var includeRead = [];
+	                /*for (var i = 0; i < tasks.length; i++) {
+	                    includeRead = includeRead.concat([
+	                        [tasks[i],fields],
+	                        [tasks[i].zonalCandidate,['justification']]
+	                    ]);
+	                    if(tasks[i].taskDefinitionType === "AD"){
+	                        includeRead.push([tasks[i].coveredByEdCpcp,['justification']]);
+	                    }
+	                    if(! tasks[i].alternativeTask){
+	                        tasks[i].alternativeTask = {name:"",type:"ALTERNATIVE"};
+	                    }
+	                    if(! tasks[i].taskConsolidation){
+	                        tasks[i].taskConsolidation = {name:"",type:"CONSOLIDATION"};
+	                    }
+	                }*/
+	                FctObjReader.Objects.includeRead = includeRead;
+		},
 		save: function(){
+			//FormProgress.calc()
 			var anuncio = app.selected.obj;
 			anuncio.loja = {codigo : FctLoja.selected.obj.codigo};
 			if(app.selected.index === -1){

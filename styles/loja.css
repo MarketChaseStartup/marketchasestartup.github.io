@@ -20,6 +20,7 @@ table.cadastro tr td input[type=date],table.cadastro tr td select,table.cadastro
     border: 1px solid;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    margin-bottom: 20px;
 }
 
 .loja-unidade .tab-content{

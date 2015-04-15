@@ -1,4 +1,4 @@
-mkcApp.factory('FctLoja',['FctApi','$location','prompt',function(FctApi,$location,prompt){
+mkcApp.factory('FctLoja',['FctApi','$location','prompt','FctObjReader',function(FctApi,$location,prompt,FctObjReader){
     
 	var app = {
 		getAll: function(sucesso, erro){
@@ -106,7 +106,7 @@ mkcApp.factory('FctLoja',['FctApi','$location','prompt',function(FctApi,$locatio
 				$location.url('loja/cadastro');
 			}else{
 				app.selected.index = -1;
-				app.selected.obj = {"login": {}, "ativa": true, "listaEndereco": []};
+				app.selected.obj = {"login": {}, "ativa": true, "listaEnderecos": []};
 				$location.url('cadastro');
 			}
 			app.setupObject();
@@ -115,32 +115,35 @@ mkcApp.factory('FctLoja',['FctApi','$location','prompt',function(FctApi,$locatio
 			FctObjReader.Objects.totalRead = [];
 			FctObjReader.Objects.ignoreRead = [];
 			FctObjReader.Objects.includeRead = [];
-			var obj = app.sellected.obj;
-			var fields = ['description','intervalJustification','note','number','procedureDescription','remarks','title'];
-	                var includeRead = [];
-	                /*for (var i = 0; i < tasks.length; i++) {
-	                    includeRead = includeRead.concat([
-	                        [tasks[i],fields],
-	                        [tasks[i].zonalCandidate,['justification']]
-	                    ]);
-	                    if(tasks[i].taskDefinitionType === "AD"){
-	                        includeRead.push([tasks[i].coveredByEdCpcp,['justification']]);
-	                    }
-	                    if(! tasks[i].alternativeTask){
-	                        tasks[i].alternativeTask = {name:"",type:"ALTERNATIVE"};
-	                    }
-	                    if(! tasks[i].taskConsolidation){
-	                        tasks[i].taskConsolidation = {name:"",type:"CONSOLIDATION"};
-	                    }
-	                }*/
-	                FctObjReader.Objects.includeRead = includeRead;
+			var obj = app.selected.obj;
+			var fieldsLoja = app.selected.obj.codigo ? ['nome'] : ['nome','login.usuario','login.senha'];
+			var fieldsEndereco =  ['bairro','cep','cidade','complemento','estado','numero','rua','tipoLogradouro','zonaEndereco'];
+			var fieldsContato = ['descricao'];
+	        var includeRead = [[obj,fieldsLoja]];
+	        for(var i = 0; i < obj.listaEnderecos.length; i++){
+	        	includeRead.push([obj.listaEnderecos[i],fieldsEndereco]);
+	        	obj.listaEnderecos[i].listaContatos = obj.listaEnderecos[i].listaContatos || [];
+	        	for(var j = 0; j < obj.listaEnderecos[i].listaContatos.length; j++){
+	        		includeRead.push([obj.listaEnderecos[i].listaContatos[j],fieldsContato]);
+	        	}
+	        }
+	                
+	        FctObjReader.Objects.includeRead = includeRead;
 		},
 		save: function(){
-			//FormProgress.calc()
-			if(app.selected.index === -1){
-				app.post();
+			var progresso = FctObjReader.calc();
+			if(app.selected.obj.listaEnderecos.length !== 0){
+				if(progresso === 1){
+					if(app.selected.index === -1){
+						app.post();
+					}else{
+						app.update();
+					}
+				}else{
+					Plugins.Mensagem.alerta('Preencha todos os campos');
+				}
 			}else{
-				app.update();
+				Plugins.Mensagem.alerta('O cadastro deve ter pelo menos uma unidade');
 			}
 		},
 		finishUpdate: function(){

@@ -1,4 +1,4 @@
-mkcApp.factory('FctObjectReader',[function(){
+mkcApp.factory('FctObjReader',[function(){
   var that = {
           calc: function (number) {
               var Objs = that.Objects,

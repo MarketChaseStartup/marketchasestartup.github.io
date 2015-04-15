@@ -1,4 +1,4 @@
-mkcApp.factory('FctAnuncio',['FctApi','$location','prompt','FctLoja','FctObjectReader',function(FctApi,$location,prompt, FctLoja,FctObjectReader){
+mkcApp.factory('FctAnuncio',['FctApi','$location','prompt','FctLoja','FctObjReader',function(FctApi,$location,prompt, FctLoja,FctObjReader){
     
 	var app = {
 		getAll: function(sucesso, erro){
@@ -98,44 +98,39 @@ mkcApp.factory('FctAnuncio',['FctApi','$location','prompt','FctLoja','FctObjectR
 			FctObjReader.Objects.totalRead = [];
 			FctObjReader.Objects.ignoreRead = [];
 			FctObjReader.Objects.includeRead = [];
-			var obj = app.sellected.obj;
-			var fields = ['description','intervalJustification','note','number','procedureDescription','remarks','title'];
-	                var includeRead = [];
-	                /*for (var i = 0; i < tasks.length; i++) {
-	                    includeRead = includeRead.concat([
-	                        [tasks[i],fields],
-	                        [tasks[i].zonalCandidate,['justification']]
-	                    ]);
-	                    if(tasks[i].taskDefinitionType === "AD"){
-	                        includeRead.push([tasks[i].coveredByEdCpcp,['justification']]);
-	                    }
-	                    if(! tasks[i].alternativeTask){
-	                        tasks[i].alternativeTask = {name:"",type:"ALTERNATIVE"};
-	                    }
-	                    if(! tasks[i].taskConsolidation){
-	                        tasks[i].taskConsolidation = {name:"",type:"CONSOLIDATION"};
-	                    }
-	                }*/
-	                FctObjReader.Objects.includeRead = includeRead;
+			var obj = app.selected.obj;
+			var fields = ['caminhoArquivo','categoria','descricao','dataHoraInicio','dataHoraVencimento'];
+			var includeRead = [];
+	                
+			includeRead = includeRead.concat([
+				[obj,fields]
+			]);
+	                
+			FctObjReader.Objects.includeRead = includeRead;
 		},
 		save: function(){
-			//FormProgress.calc()
-			var anuncio = app.selected.obj;
-			anuncio.loja = {codigo : FctLoja.selected.obj.codigo};
-			if(app.selected.index === -1){
-				console.warn("MOCK");
-				anuncio.ativo = true;
-				anuncio.caminhoArquivo = anuncio.caminhoArquivo || "sad";
-				anuncio.nomeArquivo = "fdsa";
-				anuncio.tipoAnuncio = "PNG";
-				anuncio.permanente = false;
-				anuncio.dataHoraInicio = new Date(anuncio.dataHoraInicio);
-				anuncio.dataHoraVencimento = new Date(anuncio.dataHoraVencimento);
-				anuncio.dataPostagem = new Date();
-				app.post();
+			var progresso = FctObjReader.calc();
+			if(progresso === 1){
+				var anuncio = app.selected.obj;
+				anuncio.loja = {codigo : FctLoja.selected.obj.codigo};
+				if(app.selected.index === -1){
+					console.warn("MOCK");
+					anuncio.ativo = true;
+					anuncio.caminhoArquivo = anuncio.caminhoArquivo || "sad";
+					anuncio.nomeArquivo = "fdsa";
+					anuncio.tipoAnuncio = "PNG";
+					anuncio.permanente = false;
+					anuncio.dataHoraInicio = new Date(anuncio.dataHoraInicio);
+					anuncio.dataHoraVencimento = new Date(anuncio.dataHoraVencimento);
+					anuncio.dataPostagem = new Date();
+					app.post();
+				}else{
+					app.update();
+				}
 			}else{
-				app.update();
+				Plugins.Mensagem.alerta('Preencha todos os campos');
 			}
+			
 		},
 		finishUpdate: function(){
 			app.selected.reset();

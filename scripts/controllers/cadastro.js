@@ -47,18 +47,27 @@ mkcApp.controller('CtrlCadastro',['$scope','FctLoja', 'FctDataSource','$timeout'
                 $scope.Loja.selected.obj.listaEnderecos = [];
             }
             $scope.Loja.selected.obj.listaEnderecos.unshift(FctObjetos.Endereco());
+            FctLoja.setupObject();
         },
         removerEndereco: function(index){
             $scope.Loja.selected.obj.listaEnderecos.splice(index,1);
+            FctLoja.setupObject();
         },
         novoContato: function(index, tipo){
             var valueField = (tipo === "TELEFONE" ? $('#tel'+index) : $('#email'+index));
-            var contato = {tipoContato: tipo, descricao: valueField.val()};
-            valueField.val('');
-            FctLoja.selected.obj.listaEnderecos[index].listaContatos.push(contato);
+            if(valueField.val() != ""){
+                var contato = {tipoContato: tipo, descricao: valueField.val()};
+                valueField.val('');
+                FctLoja.selected.obj.listaEnderecos[index].listaContatos.push(contato);
+                FctLoja.setupObject();                
+            }else{
+                Plugins.Mensagem.alerta('Preencha o campo de ' + (tipo==="TELEFONE" ? "telefone" : "email"))
+            }
+
         },
         removerContato: function(endereco, contatoIndex){
             endereco.listaContatos.splice(contatoIndex,1);
+            FctLoja.setupObject();
         }
     }
 

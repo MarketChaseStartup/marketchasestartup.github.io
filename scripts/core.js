@@ -3,17 +3,22 @@ var mkcApp = angular.module('mkcApp',['ngRoute','ngAnimate','ui.bootstrap','ngSa
 
 
 
-mkcApp.run(['$rootScope','$location', '$templateCache',
-function($rootScope,$location, $templateCache) {
+mkcApp.run(['$rootScope','$location', '$templateCache','FctLoja',
+function($rootScope,$location, $templateCache, FctLoja) {
 
 
-    $rootScope.$on('$routeChangeStart', function(event, next, current) {
-
+     $rootScope.$on('$routeChangeStart', function(event, next, current) {
+        
     });
+
 
     
     $rootScope.$on('$routeChangeSuccess', function(e, curr, prev) {
-
+        if(FctLoja.selected.index === -1){
+            if(location.hash!="#/cadastro" && location.hash!="#/" && location.hash!=""){
+               location.href = "#/";
+            }
+        }
     });
     
 }]);

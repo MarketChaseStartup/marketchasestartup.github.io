@@ -116,10 +116,12 @@ mkcApp.factory('FctLoja',['FctApi','$location','prompt','FctObjReader',function(
 			FctObjReader.Objects.ignoreRead = [];
 			FctObjReader.Objects.includeRead = [];
 			var obj = app.selected.obj;
-			var fieldsLoja = app.selected.obj.codigo ? ['nome'] : ['nome','login.usuario','login.senha'];
+			var fieldsLoja = ['nome'];
+			var fieldsLogin = app.selected.obj.codigo ? [] : ['usuario','senha'];
 			var fieldsEndereco =  ['bairro','cep','cidade','complemento','estado','numero','rua','tipoLogradouro','zonaEndereco'];
 			var fieldsContato = ['descricao'];
 	        var includeRead = [[obj,fieldsLoja]];
+	        fieldsLogin.length && includeRead.push([obj.login,fieldsLogin]);
 	        for(var i = 0; i < obj.listaEnderecos.length; i++){
 	        	includeRead.push([obj.listaEnderecos[i],fieldsEndereco]);
 	        	obj.listaEnderecos[i].listaContatos = obj.listaEnderecos[i].listaContatos || [];

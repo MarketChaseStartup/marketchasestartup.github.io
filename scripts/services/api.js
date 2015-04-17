@@ -4,8 +4,8 @@ mkcApp.factory('FctApi',['$http','$location',function($http,$location){
 
     var api = (function(){
     	var tratarErro = function(err,callback,status){
-    		if(err && err.exibir){
-    			Plugins.Mensagem.erro(err.message);
+    		if(status===401){
+    		    //location.href= "#";
     		}
     		if(callback){
     			callback(err,status);

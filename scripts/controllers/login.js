@@ -1,10 +1,11 @@
-mkcApp.controller('CtrlLogin',['$scope','$location', 'FctLoja', 'FctAnuncio', function($scope,$location, FctLoja, FctAnuncio){
+mkcApp.controller('CtrlLogin',['$scope','$location', 'FctLoja', 'FctAnuncio','$rootScope', function($scope,$location, FctLoja, FctAnuncio,$rootScope){
     
     $scope.Login = {
         user: '',
         password: '',
         enter: function(){
     		if($scope.Login.testLogin()){
+    		    $rootScope.login = {username: $scope.Login.user, password: $scope.Login.password}
                 Loja.find(function(resp){
                     FctLoja.select(0);
                     Anuncio.findByShop(FctLoja.selected.obj.codigo,function(){

@@ -1,7 +1,6 @@
 var Teste;
-mkcApp.factory('FctApi',['$http','$location',function($http,$location){
+mkcApp.factory('FctApi',['$http','$location','$rootScope',function($http,$location,$rootScope){
     var url = 'http://localhost:8080/marketchase/';
-
     var api = (function(){
     	var tratarErro = function(err,callback,status){
     		if(status===401){
@@ -46,7 +45,8 @@ mkcApp.factory('FctApi',['$http','$location',function($http,$location){
                     data: JSON.stringify(obj),
                     responseType : 'json',
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/json",
+                        authorization : "Basic " + btoa($rootScope.login.username + ":" + $rootScope.login.password)
                     }
                 })
                 .success(function(resp,status){
@@ -66,7 +66,8 @@ mkcApp.factory('FctApi',['$http','$location',function($http,$location){
                     data: JSON.stringify(obj),
                     responseType : 'json',
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/json",
+                        authorization : "Basic " + btoa($rootScope.login.username + ":" + $rootScope.login.password)
                     }
                 })
                 .success(function(resp,status){
@@ -83,7 +84,11 @@ mkcApp.factory('FctApi',['$http','$location',function($http,$location){
         		$http({
                     method: 'DELETE', 
                     url: url+endpId,
-                    responseType : 'json'
+                    responseType : 'json',
+                    headers: {
+                        "Content-Type": "application/json",
+                        authorization : "Basic " + btoa($rootScope.login.username + ":" + $rootScope.login.password)
+                    }
                 })
                 .success(function(resp,status){
                     sucesso(resp,status);

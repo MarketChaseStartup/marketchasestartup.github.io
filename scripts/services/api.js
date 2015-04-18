@@ -4,7 +4,7 @@ mkcApp.factory('FctApi',['$http','$location','$rootScope',function($http,$locati
     var api = (function(){
     	var tratarErro = function(err,callback,status){
     		if(status===401){
-    		    //location.href= "#";
+    		    location.href= "#";
     		}
     		if(callback){
     			callback(err,status);
@@ -155,13 +155,33 @@ mkcApp.factory('FctApi',['$http','$location','$rootScope',function($http,$locati
                 }
             }
         })(),
+		Login : (function(){
+            return {
+                login : function(sucesso,erro){
+                    api.post('login',{},sucesso,erro);
+                }
+            }
+        })(),
         Loja : (function(){
             return {
                 getAll : function(sucesso,erro){
                     api.get('lojas/',sucesso,erro);
                 },
+				get : function(id,sucesso,erro){
+                    api.get('lojas/'+id,sucesso,erro);
+                },
                 save : function(loja,sucesso,erro){
-                    api.post('lojas',loja,sucesso,erro);
+					$http({
+						method: 'POST', 
+						url: url+'lojas/',
+						data: JSON.stringify(loja),
+						responseType : 'json',
+						headers: {
+							"Content-Type": "application/json"
+						}
+					})
+					.success(sucesso)
+					.error(erro);
                 },
                 del : function(id,sucesso,erro){
                     api.del('lojas/'+id,sucesso,erro);
@@ -170,7 +190,7 @@ mkcApp.factory('FctApi',['$http','$location','$rootScope',function($http,$locati
                     api.put('lojas/'+id, loja, sucesso, erro, true);
                 }
             }
-        })(),
+        })()
     };Teste = app;
     return app;
 }]);

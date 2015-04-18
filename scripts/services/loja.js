@@ -7,6 +7,12 @@ mkcApp.factory('FctLoja',['FctApi','$location','prompt','FctObjReader',function(
 				sucesso(resp.listaObjetos);
 			}, erro);
 		},
+		get: function(id,sucesso, erro){
+			FctApi.Loja.get(id,function(resp){
+				app.list = resp.listaObjetos;
+				sucesso(resp);
+			}, erro);
+		},
 		post: function(){
 			console.warn("MOCK");
 			var i = app.selected.obj.listaEnderecos.length;

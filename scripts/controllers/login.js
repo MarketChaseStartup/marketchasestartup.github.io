@@ -1,20 +1,27 @@
-mkcApp.controller('CtrlLogin',['$scope','$location', 'FctLoja', 'FctAnuncio','$rootScope', function($scope,$location, FctLoja, FctAnuncio,$rootScope){
+mkcApp.controller('CtrlLogin',['$scope','$location', 'FctLoja', 'FctAnuncio','$rootScope','FctApi', function($scope,$location, FctLoja, FctAnuncio,$rootScope,FctApi){
     
     $scope.Login = {
         user: '',
         password: '',
         enter: function(){
     		if($scope.Login.testLogin()){
-    		    $rootScope.login = {username: $scope.Login.user, password: $scope.Login.password}
-                Loja.find(function(resp){
-                    FctLoja.select(0);
-                    Anuncio.findByShop(FctLoja.selected.obj.codigo,function(){
-                        $location.url('anuncios/lista');
-                        setTimeout(function(){
-                            $('.modal').click();
-                        },100);
-                    });
-                });
+				$rootScope.login = {username: $scope.Login.user, password: $scope.Login.password}
+				FctApi.Login.login(
+					function(idLoja){
+						Loja.find(idLoja,function(resp){
+							FctLoja.select(0);
+							Anuncio.findByShop(FctLoja.selected.obj.codigo,function(){
+								$location.url('anuncios/lista');
+								setTimeout(function(){
+									$('.modal').click();
+								},100);
+							});
+						});
+					},
+					function(){
+						Plugins.Mensagem.alerta("Login Inválido");
+					}
+				);
     		}
         },
         testLogin: function(){
@@ -27,8 +34,9 @@ mkcApp.controller('CtrlLogin',['$scope','$location', 'FctLoja', 'FctAnuncio','$r
     };
 
     var Loja = {
-        find: function(callback){
-            FctLoja.getAll(
+        find: function(idLoja,callback){
+					
+            FctLoja.get(idLoja,
                 function(resp){
                     callback(resp);
                 },

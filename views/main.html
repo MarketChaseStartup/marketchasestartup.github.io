@@ -1,8 +1,20 @@
 <div style="text-align: center;" >
-	<section ng-repeat="content in Content.list" class="classe1">
-		<h1>Conte&uacute;do</h1>
+	<section class="classe1">
+		<h1>Crie Promoções</h1>
 		<div>
-			content
+			<img src="images/loja_promocao.jpg" />
+		</div>
+	</section>
+	<section class="classe1">
+		<h1>Publique na Web</h1>
+		<div>
+			<img src="images/loja_publicacao.jpg" />
+		</div>
+	</section>
+	<section class="classe1">
+		<h1>Atraia Clientes</h1>
+		<div>
+			<img src="images/smartphone_compra.jpg" />
 		</div>
 	</section>
 </div>
@@ -12,9 +24,13 @@
 .classe1{
 	background-color: #cc525d;
 	color: #fff;
-	min-height: 500px;
 	width: 30%;
 	margin: 30px 1%;
-	display: inline-block;
+	padding-bottom: 70px;
+	display: inline-table;
+}
+
+.classe1 img{
+	width: 100%;
 }
 </style>

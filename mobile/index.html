@@ -22,21 +22,9 @@
   </body>
 </html>
 <script src="script/jquery-1.11.2.js"></script>
-<script src="script/socketio.js"></script>
 <script src="script/react.js"></script>
 <script src="script/JSXTransformer.js"></script>
-<script>
-  var socket = io();
-  var car = document.getElementById('car');
-  socket.on('carControl',function(data){console.log(data,'controle')
-    switch(data.direction){
-      case 'left'  : CarController.left();  break;
-      case 'right' : CarController.right(); break;
-      case 'top'   : CarController.top();   break;
-      case 'bottom': CarController.bottom();break;
-    }
-  });
-</script>
+
 
 
 <script type="text/jsx">
